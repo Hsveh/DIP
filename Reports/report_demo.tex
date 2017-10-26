@@ -1,0 +1,33 @@
+%!TEX program = xelatex
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate,proof,color}
+\usepackage{enumerate,textcomp,mathabx}
+\usepackage{tikz,booktabs,multirow}
+\usepackage{algorithm2e}
+\usepackage{fontspec, xunicode, xltxtra}
+\usepackage{graphicx}
+
+\newenvironment{sol}
+  {\par\vspace{3mm}\noindent{\it Solution}.}
+  {\qed}
+
+\setmainfont{Hiragino Sans GB}
+
+\title{Homework 10}
+\author{Bingo!}
+
+\begin{document}
+
+\maketitle{Ex10.3}
+
+\section{Ex10.3}
+Find a closed formula for sn and prove it! Hint. One part will be easy. For the other part, use Ore’s Theorem.
+\begin{sol}
+Every vertex's degree is $n-1$, and it is obvious that the degree of every vertex is lager or equal to 2 is there is a Hamilton cycle. Thus, $s_n \le n-2$.\\
+We take 2 arbitrary vertices $v,u$, and we know $degree(v)+degree(u)=2n-2$. Now we take less than $n-2$ edges away from the graph and the minimum value of $degree(v)+degree(u)=2n-2-2-(n-4)=n$. Therefore, if we take less than $n-2$ edges away from the graph, there is a Hamilton cycle.
+\end{sol}
+\end{document}
