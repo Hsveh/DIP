@@ -63,3 +63,58 @@ imshow(g_image);
 
 subplot(248);
 imshow(h_image);
+
+
+
+
+
+function image_f = fourier_transform(image,rows,cols)
+    [row,col]=size(image);
+    
+    %pad image to rows*cols
+    image = [image zeros(row,cols-col)];
+    image = [image;zeros(rows-row,cols)];
+    
+    image_f = double(zeros(rows,cols));
+    base_x_matrix = zeros(rows,1);
+    base_y_matrix = zeros(cols,1);
+    
+    
+    for x = 1:rows
+        base_x_matrix(x) = exp(1i*2*pi*(x-1)/rows);
+    end
+    
+    for y = 1:cols
+        base_y_matrix(y) = exp(1i*2*pi*(y-1)/cols);
+    end
+    
+    
+    %%%DP
+    %%%.* not supported here
+    %for r = 1:rows
+    %    for c = 1:cols
+    %        s = double(image(r,c));
+    %        x_increase = x_increase + s*x_matrix(r);
+    %        y_increase = y_increase + s*y_matrix(c);
+    %    end
+    %end
+    
+    
+    %%% image_f(0,0)
+    image_f(1,1) = sum(sum(image));
+    
+    x_sum = sum(double(image'));
+    y_sum = sum(double(image));
+    
+    for r = 2:rows
+        x_sum = x_sum .* base_x_matrix';
+        image_f(r,1) = sum(x_sum);
+    end
+        
+    for c = 2:cols
+        y_sum = y_sum .* base_y_matrix';
+        image_f(1,c) = sum(y_sum);
+    end
+    image_f(1,56)
+    image_f(56,1)
+end
