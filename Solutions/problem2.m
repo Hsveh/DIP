@@ -51,7 +51,7 @@ lap_image = lap_image+0.8;
 
 for r = 3:row-2
     for c = 3:col-2
-        e_image(r,c) = mean(mean(double_image(r-2:r+2,c-2:c+2)));
+        e_image(r,c) = mean(mean(d_image(r-2:r+2,c-2:c+2)));
     end
 end
 

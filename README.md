@@ -3,7 +3,7 @@ My homework of Digital Image Processing.
 ### Codes
 
 - [x] Problem1
-- [ ] Problem2
+- [x] Problem2
 - [ ] Problem3
 - [ ] Problem4
 - [ ] Problem5
@@ -15,7 +15,7 @@ My homework of Digital Image Processing.
 
 ### Reports
 - [x] Problem1
-- [ ] Problem2
+- [x] Problem2
 - [ ] Problem3
 - [ ] Problem4
 - [ ] Problem5

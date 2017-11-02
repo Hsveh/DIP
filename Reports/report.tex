@@ -11,6 +11,7 @@
 \usepackage[palette=munch]{nexus}
 \usepackage{verbatim}
 \usepackage{listings} 
+\usepackage{amsmath}
 
 %%%%%%%%%%%%%%%% hyperref
 \usepackage{lipsum}
@@ -42,7 +43,7 @@
 As a minimum, your report should include the original image, a plot of its histogram, a plot of the transformation function, the enhanced image, and a plot of its histogram.
 \section{Generate the Histogram}
 \subsection{Function}
-Generating the histogram of an image using flowwing function:\\
+Generating the histogram of an image using following function:\\
 \begin{center}
 $H(i) = the\ number\ of\ pixel\ whose\ value\ euquals\ to\ i$
 \end{center}
@@ -87,16 +88,16 @@ $New\ Image(r,c) = Transfer\ Function(image(r,c))\ \forall r \in [1,rows]\ and\ 
 \end{center}
 to enhance the original images. 
 \subsection{Enhanced Images}
-The original images and enhanced images and its histogram are listed as follows.
+The original images and enhanced images and histogram comparation are listed as follows.
 \begin{figure}[!htb]
    \centering  
    \includegraphics[width=1.0\textwidth]{images/1/image1.jpg}
-   \caption{original image and enhanced image and its histogram of fig1.jpg}  
+   \caption{original image and enhanced image and histogram comparation of fig1.jpg}  
 \end{figure}
 \begin{figure}[!htb]
    \centering  
    \includegraphics[width=1.0\textwidth]{images/1/image2.jpg}
-   \caption{original image and enhanced image and its histogram of fig2.jpg}  
+   \caption{original image and enhanced image and histogram comparation of fig2.jpg}  
 \end{figure}
 
 
@@ -107,16 +108,100 @@ The original images and enhanced images and its histogram are listed as follows.
 \section{OverView}
    Implement the image enhancement task of Section 3.7 (Fig 3.43, page 171). The image to be enhanced is skeleton\_orig.tif. You should implement all steps in Figure 3.43. (You are encouraged to implement all functions by yourself, not to directly use Matlab functions such as imfilter or fspecial.)
 
+\section{Image b}
+\subsection{Laplacian Transform Filter}
+We apply Laplacian Transform on the original image to get the image (b) using the following filter.
+\begin{gather*}
+\begin{bmatrix} -1&-1&-1 \\ -1&8&-1 \\ -1&-1&-1\end{bmatrix}
+\end{gather*}
+\subsection{Laplacian Transform}
+Image b:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.625\textwidth]{images/2/b.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
 
+\section{Image c}
+The we add the Laplacian of the original image to the original image, we will get the new image c. The new image c is a rather noisy sharpened image.\\
+Image c:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/2/c.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
 
+\section{Image d}
+\subsection{Sobel Gradient Masks}
+We will use two mask to separately get the components $g_x$ and $g_y$. Then add the two components together, we will get the the sober gradient of the original image. The new image is as follows. As we can see, edges are much more dominant in this image than in the Laplacian image.\\
+$g_x$:
+\begin{gather*}
+  \begin{bmatrix}
+    -1&-2&-1 \\ 0&0&0 \\ 1&2&1
+  \end{bmatrix}
+\end{gather*}
+$g_y$:
+\begin{gather*}
+  \begin{bmatrix}
+    -1&0&1 \\ -2&0&2 \\ -1&0&1
+  \end{bmatrix}
+\end{gather*}
+\subsection{Image d}
+Image d:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.625\textwidth]{images/2/d.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
+
+\section{Image e}
+Image e is formed by smoothing image d by 5*5 mean filter.\\
+Image e:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/2/e.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
+
+\section{Image f}
+Image f is formed by the product of Laplacian and smoothed-gradient image.
+The dominance of the strong edges and the relative lack of visible noise, which is the key objective behind masking the Laplacian with a smoothed gradient image.\\
+Image f:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/2/f.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
+
+\section{Image g}
+Adding the image f to the original image and then we get image g.\\
+image g:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/2/g.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
+
+\section{Image h}
+\subsection{Power-Law Transformation}
+We use the following function to perform Power-Law Transformation on image g.
+\begin{center}
+$s=cr^{\gamma}\ (c\ =\ 1\ and\ \gamma \ =\ 1)$
+\end{center}
+\subsection{Image h}
+Image h:
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.85\textwidth]{images/2/h.jpg}
+   \caption{Laplacian Transform of skeleton\_orig.tif}  
+\end{figure}
 \chapter{Filtering in frequency domain}
+\section{OverView}
 Implement the ideal, Butterworth and Gaussian lowpass and highpass filters and compare the results under different parameters using the image characters\_test\_pattern.tif (this image file can be found at the ftp server ftp://ftp.cs.sjtu.edu.cn:990/lu-ht/DIP/images) as the test pattern.
 
 \section{This is a section}
 \subsection{This is a subsection}
-\lipsum[1-1]
 \subsection{This is a subsection}
-\lipsum[1-2]
 
 \chapter{Generating different types of noise and comparing different noise reduction methods}
 \section{OverView}
@@ -126,9 +211,7 @@ Add some of these noises to the circuit image Circuit.tif (images can be found a
 
 \section{This is a section}
 \subsection{This is a subsection}
-\lipsum[1-1]
 \subsection{This is a subsection}
-\lipsum[1-2]
 
 \chapter{Image restoration}
 \section{OverView}
@@ -136,9 +219,7 @@ Add some of these noises to the circuit image Circuit.tif (images can be found a
 
 \section{This is a section}
 \subsection{This is a subsection}
-\lipsum[1-1]
 \subsection{This is a subsection}
-\lipsum[1-2]
 
 
 %%%%%%
@@ -152,7 +233,7 @@ Add some of these noises to the circuit image Circuit.tif (images can be found a
 % Student ID:515030910443
 % Histogram Equalizatio
 
-%% main part
+%% Main Part
 image1 = imread('Image Path/Fig1.jpg');
 image2 = imread('Image Path/Fig2.jpg');
 
@@ -164,7 +245,7 @@ histogram_equalization(image2);
 plot_data(image1,image_e1,histogram1,histogram_e1,transfer_f1);
 plot_data(image2,image_e2,histogram2,histogram_e2,transfer_f2);
 
-%% functions part
+%% Functions Part
 
 % get histogram of image
 % image: get histogram of it
@@ -236,8 +317,123 @@ end
 \end{lstlisting}
 
 
-\section{This is a section}
+\section{Problem 2}
 
+\begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
+% Problem 2
+% by Xue Fanyong
+% Student ID:515030910443
+% Combining spatial enhancement methods
+
+%% Main Part
+image = imread('Image Path/skeleton_orig.tif');
+[row,col] = size(image);
+mask = [-1 -1 -1;-1 8 -1;-1 -1 -1];
+mask = double(mask);
+b_image = laplace_transformations(image,mask);
+c_image = b_image+im2double(image);
+d_image = sobel_gradient(image);
+e_image = smooth(d_image);
+f_image = im2double(e_image).*c_image;
+g_image = abs(f_image)+im2double(image);
+h_image = sqrt(g_image);
+plot_data(image,b_image,c_image,d_image,
+          e_image,f_image,g_image,h_image);
+
+%% Function Part
+
+% Laplace Transfromation for image using mask
+% Input:
+%   image:image you want to perform
+%   mask:Laplace mask you want to use
+% Output:
+%   image_l:image after laplace transformation
+
+function image_l = laplace_transformations(image,mask)
+    [row,col] = size(image);
+    mask = double(mask);
+    %append image
+    image_l = im2double(image);
+    image = [zeros(row,2) image zeros(row,2)];
+    image = [zeros(2,col+4);image;zeros(2,col+4)];
+    image_append = im2double(image);
+    
+    for r = 1:row
+        for c = 1:col
+            image_l(r,c) = sum(sum(image_append(r:r+2,c:c+2).*mask));
+        end
+    end
+end
+%{
+    sobel gradient for image
+%}
+function image_s = sobel_gradient(image)
+    [row,col] = size(image);
+    x_mask = [-1 -2 -1;0 0 0;1 2 1];
+    y_mask = [-1 0 1;-2 0 2;-1 0 1];
+    image_s = image;
+    image = double(image);
+    
+    for r = 2:row-1
+        for c = 2:col-1
+            image_s(r,c) = 
+            abs(sum(sum(image(r-1:r+1,c-1:c+1).*x_mask)))+
+            abs(sum(sum(image(r-1:r+1,c-1:c+1).*y_mask)));
+        end
+    end
+end
+%{
+    smooth image using 5*5 mean filter
+%}
+function image_s = smooth(image)
+    [row,col] = size(image);
+    image_s = image;
+    for r = 3:row-2
+        for c = 3:col-2
+            image_s(r,c) = mean(mean(image(r-2:r+2,c-2:c+2)));
+        end
+    end
+end
+%{
+    plot data
+%}
+function plot_data(a,b,c,d,e,f,g,h)
+    figure();
+    
+    subplot(241);
+    imshow(a);
+    title('(a) Oringinal Image');
+    
+    subplot(242);
+    imshow(b,[]);
+    title('(b) Laplacian of (a)');
+    
+    subplot(245);
+    imshow(c,[]);
+    title('(c) Sharpened image');
+    
+    subplot(246);
+    imshow(d);
+    title('(d) Sobel gradient');
+    
+    subplot(243);
+    imshow(e);
+    title('(e) Smoothed sobel image');
+    
+    subplot(244);
+    imshow(f,[]);
+    title('(f) Product of (c) and (e)');
+    
+    subplot(247);
+    imshow(g,[]);
+    title('(g) Sharpened image');
+    
+    subplot(248);
+    imshow(h,[]);
+    title('(h) Final result');
+end
+
+\end{lstlisting}
 
 \end{appendices}
 
