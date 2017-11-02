@@ -10,6 +10,23 @@ image2 = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig2.jp
 [histogram1,histogram_e1,transfer_f1,image_e1] = histogram_equalization(image1);
 [histogram2,histogram_e2,transfer_f2,image_e2] = histogram_equalization(image2);
 
+%imwrite(histogram1,'/Users/xuefanyong/Documents/GitHub/DIP/Reports/images/1/histogram1.jpg');
+%imwrite(histogram2,'/Users/xuefanyong/Documents/GitHub/DIP/Reports/images/1/histogram2.jpg');
+figure();
+subplot(131);
+imshow(image1);
+subplot(132);
+imshow(image_e1);
+subplot(133);
+bar(histogram_e1);
+figure();
+subplot(131);
+imshow(image2);
+subplot(132);
+imshow(image_e2);
+subplot(133);
+bar(histogram_e2);
+
 plot_data(image1,image_e1,histogram1,histogram_e1,transfer_f1);
 plot_data(image2,image_e2,histogram2,histogram_e2,transfer_f2);
 
@@ -30,7 +47,7 @@ function histogram = get_histogram(image)
 end
 
 %do the histogram_equalization for image
-%image: do the histogram_equalization for it
+%image: do histogram_equalization for it
 %histogram: original histogram; histogram_e: histogram after histogram
 %equalizatio; transfer_f: transfer function; image_e: image after histogram
 %equalizatio
