@@ -208,8 +208,6 @@ function image_f = DFT(image,rows,cols)
     end
     image_f = image;
 end
-%}
-
 function image_f=DFT(image,rows,cols)
 
 end
@@ -234,3 +232,4 @@ function v = DFT_1(V)
         end
     end
 end
+%}

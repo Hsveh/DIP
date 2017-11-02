@@ -1,4 +1,4 @@
-image = imread('/Users/xuefanyong/Documents/MATLAB/skeleton_orig.tif');
+image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/skeleton_orig.tif');
 [row,col] = size(image);
 c_image = image;
 d_image = image;
@@ -8,7 +8,7 @@ g_image = image;
 h_image = image;
 double_image = double(image);
 lap_image = zeros(row,col);
-mask = [0 1 0;1 -4 1;0 1 0];
+mask = [-1 -1 -1;-1 8 -1;-1 -1 -1];
 
 %append_image = [zeros(row,1) double_image zeros(row,1)];
 %append_image = [zeros(1,col+2); append_image ;zeros(1,col+2)];
@@ -17,13 +17,35 @@ mask = [0 1 0;1 -4 1;0 1 0];
 x_mask = [-1 -2 -1;0 0 0;1 2 1];
 y_mask = [-1 0 1;-2 0 2;-1 0 1];
 
+
 for r = 2:row-1
     for c = 2:col-1
-        lap_image(r,c) = sum(sum(double_image(r-1:r+1,c-1:c+1).*mask));
+        lap_image(r,c) = image(r,c)+sum(sum(double_image(r-1:r+1,c-1:c+1).*mask));
         c_image(r,c) = image(r,c) - lap_image(r,c);
         d_image(r,c) = abs(sum(sum(double_image(r-1:r+1,c-1:c+1).*x_mask)))+abs(sum(sum(double_image(r-1:r+1,c-1:c+1).*y_mask)));
     end
 end
+
+
+
+min = lap_image(1,1);
+max = lap_image(1,1);
+
+for r = 1:row
+    for c = 1:col
+        if min > lap_image(r,c)
+            min = lap_image(r,c);
+        end
+        if max < lap_image(r,c)
+            max = lap_image(r,c);
+        end
+    end
+end
+
+max = max - min;
+lap_image = lap_image - min;
+lap_image = (lap_image/max);
+lap_image = lap_image+0.8;
 
 %d_image
 
@@ -43,7 +65,7 @@ h_image = sqrt(double(g_image));
 
 figure(1);
 subplot(241);
-imshow(image);
+imshow(double(zeros(row,col))+0.8);
 subplot(242);
 imshow(lap_image);
 
@@ -68,10 +90,10 @@ imshow(h_image);
 
 
 
+%{
 function image_f = fourier_transform(image,rows,cols)
     [row,col]=size(image);
     
-    %pad image to rows*cols
     image = [image zeros(row,cols-col)];
     image = [image;zeros(rows-row,cols)];
     
@@ -89,18 +111,6 @@ function image_f = fourier_transform(image,rows,cols)
     end
     
     
-    %%%DP
-    %%%.* not supported here
-    %for r = 1:rows
-    %    for c = 1:cols
-    %        s = double(image(r,c));
-    %        x_increase = x_increase + s*x_matrix(r);
-    %        y_increase = y_increase + s*y_matrix(c);
-    %    end
-    %end
-    
-    
-    %%% image_f(0,0)
     image_f(1,1) = sum(sum(image));
     
     x_sum = sum(double(image'));
@@ -117,4 +127,5 @@ function image_f = fourier_transform(image,rows,cols)
     end
     image_f(1,56)
     image_f(56,1)
-end
+    end
+%}
