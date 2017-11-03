@@ -1,5 +1,6 @@
+% image append and bugs to be solve
 % Problem 2
-% by Xue Fanyong
+% by Fanyong Xue
 % Student ID:515030910443
 % Combining spatial enhancement methods
 

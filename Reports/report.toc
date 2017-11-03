@@ -27,21 +27,44 @@
 \contentsline {subsection}{\numberline {2.8.2}Image h}{15}{subsection.2.8.2}
 \contentsline {chapter}{\numberline {3}Filtering in frequency domain}{16}{chapter.3}
 \contentsline {section}{\numberline {3.1}OverView}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}This is a section}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}This is a subsection}{16}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}This is a subsection}{16}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Generating different types of noise and comparing different noise reduction methods}{17}{chapter.4}
-\contentsline {section}{\numberline {4.1}OverView}{17}{section.4.1}
-\contentsline {section}{\numberline {4.2}This is a section}{17}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}This is a subsection}{17}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}This is a subsection}{17}{subsection.4.2.2}
-\contentsline {chapter}{\numberline {5}Image restoration}{18}{chapter.5}
-\contentsline {section}{\numberline {5.1}OverView}{18}{section.5.1}
-\contentsline {section}{\numberline {5.2}This is a section}{18}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{18}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{18}{subsection.5.2.2}
+\contentsline {section}{\numberline {3.2}Fourier Transform}{16}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Transform Function}{16}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Fast Fourier Transform}{16}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Filtering}{16}{section.3.3}
+\contentsline {section}{\numberline {3.4}Ideal Filter}{17}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Ideal Low Pass}{17}{subsection.3.4.1}
+\contentsline {subsubsection}{Ideal Low Pass Filter}{17}{section*.2}
+\contentsline {subsubsection}{Result}{17}{section*.3}
+\contentsline {subsection}{\numberline {3.4.2}Ideal High Pass}{18}{subsection.3.4.2}
+\contentsline {subsubsection}{Ideal High Pass Filter}{18}{section*.4}
+\contentsline {subsubsection}{Result}{18}{section*.5}
+\contentsline {section}{\numberline {3.5}Butterworth Filter}{19}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Butterworth Low Pass}{19}{subsection.3.5.1}
+\contentsline {subsubsection}{Butterworth Low Pass Filter}{19}{section*.6}
+\contentsline {subsubsection}{Result}{19}{section*.7}
+\contentsline {subsection}{\numberline {3.5.2}Butterworth High Pass}{19}{subsection.3.5.2}
+\contentsline {subsubsection}{Butterworth High Pass Filter}{19}{section*.8}
+\contentsline {subsubsection}{Result}{20}{section*.9}
+\contentsline {section}{\numberline {3.6}Gaussian Filter}{21}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Gaussian Low Pass}{21}{subsection.3.6.1}
+\contentsline {subsubsection}{Gaussian Low Pass Filter}{21}{section*.10}
+\contentsline {subsubsection}{Result}{21}{section*.11}
+\contentsline {subsection}{\numberline {3.6.2}Gaussian High Pass}{21}{subsection.3.6.2}
+\contentsline {subsubsection}{Gaussian High Pass Filter}{21}{section*.12}
+\contentsline {subsubsection}{Result}{22}{section*.13}
+\contentsline {chapter}{\numberline {4}Generating different types of noise and comparing different noise reduction methods}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}OverView}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}This is a section}{23}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}This is a subsection}{23}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}This is a subsection}{23}{subsection.4.2.2}
+\contentsline {chapter}{\numberline {5}Image restoration}{24}{chapter.5}
+\contentsline {section}{\numberline {5.1}OverView}{24}{section.5.1}
+\contentsline {section}{\numberline {5.2}This is a section}{24}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{24}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{24}{subsection.5.2.2}
 \gdef \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Codes}{19}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Problem1}{19}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Problem 2}{20}{section.a.A.2}
+\contentsline {chapter}{\numberline {A}Codes}{25}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Problem1}{25}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Problem 2}{26}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Problem 3}{29}{section.a.A.3}
 \contentsfinish 

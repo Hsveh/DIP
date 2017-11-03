@@ -1,5 +1,5 @@
 % Problem 1
-% by Xue Fanyong
+% by Fanyong Xue
 % Student ID:515030910443
 % Histogram Equalizatio
 
