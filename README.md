@@ -1,5 +1,8 @@
 # DIP
 My homework of Digital Image Processing.
+![License](https://img.shields.io/hexpm/l/plug.svg)
+![Languages](https://img.shields.io/badge/Languages-Matlab-blue.svg)
+![Languages](https://img.shields.io/badge/Languages-Tex-blue.svg)
 ### Codes
 
 - [x] Problem1
