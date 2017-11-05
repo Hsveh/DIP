@@ -322,16 +322,214 @@ $D(u,v)$ is defined in $(3.7)$
 
 
 
-\chapter{Generating different types of noise and comparing different noise reduction methods}
+\chapter{Noise and different noise reduction methods}
 \section{OverView}
 In this problem, you are required to write a program to generate different types of random noise (Uniform, Gaussian, Rayleigh, Gamma, Exponential and Impulse, first started from the uniform noise and then use some functions to convert the uniform noise to Gaussian, Rayleigh, Gamma and Exponential; Impulse noise is generated in a different way, consulting the textbook and some other references) and then add these noises to the test patter image Fig0503(original\_pattern).tif to compare the visual results of the noisy images.
 
 Add some of these noises to the circuit image Circuit.tif (images can be found at ftp://ftp.cs.sjtu.edu.cn:990/lu-ht/DIP/images) and investigate the noise reduction results using different mean filters and order statistics filters as the textbook did at pages 344-352 (Pages 322-329 in the electronic version of the textbook).
 
-\section{This is a section}
-\subsection{This is a subsection}
-\subsection{This is a subsection}
+\section{Noise}
+\subsection{Uniform Noise}
+The PDF of $uniform noise$ is given by\\
+\begin{eqnarray}p(z)=
+\begin{cases}
+\frac{1}{b-a}, &if\ a \le z\le b\cr 0, &otherwise\end{cases}
+\end{eqnarray}
+The mean of this density function is given by\\
+\begin{align}
+\overline z =\frac{a+b}{2}
+\end{align}
+and its variance by\\
+\begin{align}
+\sigma ^{2} = \frac{(b-a)^2}{12}
+\end{align}
 
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.5\textwidth]{images/4/uniform.jpg}
+   \caption{Uniform Noise}  
+\end{figure}
+\newpage
+\subsection{Gaussian Noise}
+The PDF of a $Gaussian$ random variable, z, is given by\\
+\begin{align}
+p(z) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(z-\overline z)^2}{z\sigma ^2}}
+\end{align}
+and it can generate form uniform noise by\\
+\begin{align}
+X = \sqrt{-2lnU}cos(2\pi V)\\
+Y = \sqrt{-2lnU}sin(2\pi V)
+\end{align}
+$U$ and $V$ come form uniform(0,1).
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/gaussian.jpg}
+   \caption{Gaussian Noise}  
+\end{figure}
+\newpage
+\subsection{Rayleigh Noise}
+The PDF of $Rayleigh noise$ is given by\\
+\begin{eqnarray}p(z)=
+\begin{cases}
+\frac{2}{b}(z-a)e^{-\frac{(z-a)^2}{b}}, &for\ z \ge a\cr 0, &for\ z <a\end{cases}
+\end{eqnarray}
+The mean and variance of this density are given by\\
+\begin{align}
+\overline z = a + \sqrt{\frac{b\pi}{4}}
+\end{align}
+and
+\begin{align}
+\sigma ^2 = \frac{b(4-\pi)}{4}
+\end{align}
+and it can generate form uniform noise by\\
+\begin{align}
+  z=a+\sqrt{-bln[1-U(0,1)]}
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/rayleigh.jpg}
+   \caption{Rayleigh Noise}  
+\end{figure}
+\newpage
+\subsection{Erlang(Gamma) Noise}
+The PDF of $Erlang noise$ is given by\\
+\begin{eqnarray}p(z)=
+\begin{cases}
+\frac{a^bz^{b-1}}{(b-1)!}e^{-az}, &for\ z \ge 0\cr 0, &for\ z <0\end{cases}
+\end{eqnarray}
+The mean and variance of this density are given by\\
+\begin{align}
+\overline z = \frac{b}{a}
+\end{align}
+and\\
+\begin{align}
+ \sigma ^2 = \frac{b}{a^2}
+\end{align}
+and it can generate form uniform noise by\\
+\begin{align}
+  E_i = -\frac{1}{a}ln[1-U(0,1)]\\
+  z=E_1+E_2+\cdots+E_b
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.9\textwidth]{images/4/gamma.jpg}
+   \caption{Gamma Noise}  
+\end{figure}
+\newpage
+\subsection{Exponential Noise}
+The PDF of $exponential noise$ is given by\\
+\begin{eqnarray}p(z)=
+\begin{cases}
+ae^{-az}, &for\ z \ge 0\cr 0, &for\ z <0\end{cases}
+\end{eqnarray}
+The mean and variance of this density function are\\
+\begin{align}
+\overline z = \frac{1}{a}
+\end{align}
+and\\
+\begin{align}
+\sigma ^2 = \frac{1}{a^2}
+\end{align}
+and it can generate form uniform noise by\\
+\begin{align}
+z = -\frac{1}{a}ln[1-U(0,1)]
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.9\textwidth]{images/4/exponential.jpg}
+   \caption{Exponential Noise}
+\end{figure}
+\newpage
+\subsection{Impulse Noise}
+The PDF of $(bipolar) impulse noise$ is given by\\
+\begin{eqnarray}p(z)=
+\begin{cases}
+P_a, &for\ z=a \cr P_b, &for\ z = b\cr 0,&otherwise\end{cases}
+\end{eqnarray}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/impulse.jpg}
+   \caption{Impulse Noise}
+\end{figure}
+\newpage
+
+\section{Mean Filters}
+\subsection{Filters}
+\subsubsection{Arithmetic mean filter}
+\begin{align}
+\hat{f}(x,y)=\frac{1}{mn}\sum_{(s,t)\in S_{xy}}g(s,t)
+\end{align}
+\subsubsection{Geometric mean filter}
+\begin{align}
+\hat{f}(x,y)=[\prod_{(s,t)\in S_{xy}}g(s,t)]^{\frac{1}{mn}}
+\end{align}
+\subsubsection{Harmonic mean filter}
+\begin{align}
+\hat{f}(x,y) = \frac{mn}{\sum_{(s,t)\in S_{xy}}\frac{1}{g(s,t)}}
+\end{align}
+\subsubsection{Contraharmonic mean filter}
+\begin{align}
+\hat{f}(x,y) = \frac{\sum_{(s,t)\in S_{xy}}g(s,t)^{Q+1}}{\sum_{(s,t)\in S_{xy}}g(s,t)^Q}
+\end{align}
+\subsection{Results}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.75\textwidth]{images/4/mean1.jpg}
+   \caption{Original Book FIGURE 5.7}
+\end{figure}
+\newpage
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/mean2.jpg}
+   \caption{Original Book FIGURE 5.8}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.7\textwidth]{images/4/mean3.jpg}
+   \caption{Original Book FIGURE 5.9}
+\end{figure}
+\newpage
+
+\section{Order-Statistic Filters}
+\subsection{Filters}
+\subsubsection{Median filter}
+\begin{align}
+\hat{f}(x,y) = {median}_{(s,t)\in S_{xy}}{g(s,t)}
+\end{align}
+\subsubsection{Max filters}
+\begin{align}
+\hat{f}(x,y) = {max}_{(s,t)\in S_{xy}}{g(s,t)}
+\end{align}
+\subsubsection{Min filters}
+\begin{align}
+\hat{f}(x,y) = {min}_{(s,t)\in S_{xy}}{g(s,t)}
+\end{align}
+\subsubsection{Midpoint filter}
+\begin{align}
+\hat{f}(x,y) = \frac{1}{2}[{max}_{(s,t)\in S_{xy}}{g(s,t)}+{min}_{(s,t)\in S_{xy}}{g(s,t)}]
+\end{align}
+\subsubsection{Alpha-trimmed mean filter}
+\begin{align}
+\hat{f}(x,y) = \frac{1}{mn-d}\sum_{(s,t)\in S_{xy}}g_r(s,t)
+\end{align}
+\newpage
+\subsection{Results}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/order1.jpg}
+   \caption{Original Book FIGURE 5.10}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.7\textwidth]{images/4/order2.jpg}
+   \caption{Original Book FIGURE 5.11}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1.0\textwidth]{images/4/order3.jpg}
+   \caption{Original Book FIGURE 5.12}
+\end{figure}
+\newpage
 \chapter{Image restoration}
 \section{OverView}
 
@@ -942,6 +1140,414 @@ function v = DFT_1(V)
     end
 end
 %}
+\end{lstlisting}
+
+
+
+\section{Problem 4}
+
+\begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
+%{
+    Problem 4
+    by Fanyong Xue
+  Student ID:515030910443
+    Generating different types of noise and comparing different noise reduction methods
+%}
+
+%% Main Part
+image = imread('Image Path/Fig0503.tif');
+plot_data_noises(image);
+
+circuit = imread('Image Path/Circuit.tif');
+plot_data_noises(circuit);
+plot_mean_filter(circuit);
+plot_order_statistic_filter(circuit);
+
+%% Function Part
+% plot data by mean filters
+function plot_mean_filter(image)
+    figure('name','Mean Filters1');
+    
+    [row,col] = size(image);
+    image = im2double(image);
+    subplot(221);
+    imshow(image);
+    title('(a) X-ray image');
+    
+    n = uniform_noise(row,col,0,0.3);
+    g = gaussian_noise(n,0,0.08);
+    image_b = image+g;
+    subplot(222);
+    imshow(image_b);
+    title('(b) Image corrupted by additive Gaussian noise');
+    
+    subplot(223);
+    imshow(arithmetic_mean_filter(image_b,3,3));
+    title('(c) Result of filtering with an arithmetic mean filter');
+    
+    subplot(224);
+    imshow(geometric_mean_filter(image_b,3,3));
+    title('(d) Result of filtering with a geometric mean filter');
+    
+    figure('name','Mean Filters2');
+    
+    subplot(221);
+    image_a_ = impulse_noise(image,0.1,0,-1,0);
+    imshow(image_a_);
+    title('(a) Image corrupted by pepper noise');
+    
+    subplot(222);
+    image_b_ = impulse_noise(image,0.1,0,1,0);
+    imshow(image_b_);
+    title('(b) Image corrupted by salt noise');
+    
+    
+    subplot(223);
+    imshow(contraharmonic_mean_filter(image_a_,1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter');
+    
+    subplot(224);
+    imshow(contraharmonic_mean_filter(image_b_,-1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter');
+    
+    figure('name','Mean Filters3');
+    
+    subplot(121);
+    imshow(contraharmonic_mean_filter(image_a_,-1.5,3,3));
+    title('(c) Result of filtering (a) with a 
+              contra-harmonic filter(Q=-1.5)');
+    
+    subplot(122);
+    imshow(contraharmonic_mean_filter(image_b_,1.5,3,3));
+    title('(c) Result of filtering (a) with a 
+                contra-harmonic filter(Q=1.5)');
+end
+% plot data by order statistic filters
+function plot_order_statistic_filter(image)
+    figure('name','Order-Statistic Filters1');
+    image = im2double(image);
+    image_a = impulse_noise(image,0.1,0.1,-1,1);
+    
+    subplot(221);
+    imshow(image_a);
+    title('Image corrupted by salt-and-pepper noise');
+    
+    subplot(222);
+    image_b = median_filter(image_a,3,3);
+    imshow(image_b);
+    title('(b) Result of one pass with a median filter');
+    
+    subplot(223);
+    image_c = median_filter(image_b,3,3);
+    imshow(image_c);
+    title('(c) Result of processing (b) with the same filter');
+    
+    subplot(224);
+    imshow(median_filter(image_c,3,3));
+    title('(d) Result of processing (c) with the same filter');
+    
+    figure('name','Order-Statistic Filters2');
+    
+    image_a__ = impulse_noise(image,0.1,0,-1,0);
+    subplot(121);
+    imshow(max_filter(image_a__,3,3));
+    title('(a) Result of filtering pepper noise with a max filter');
+    
+    image_b__ = impulse_noise(image,0.1,0,1,0);
+    subplot(122);
+    imshow(min_filter(image_b__,3,3));
+    title('(a) Result of filtering salt noise with a min filter');
+    
+    figure('name','Order-Statistic Filters3');
+    [row,col] = size(image);
+    n = uniform_noise(row,col,0,0.3);
+    image_a_ = image + n;
+    subplot(321);
+    imshow(image_a_);
+    title('(a) Image corrupted by additive uniform noise');
+    
+    image_b_ = impulse_noise(image_a_,0.1,0.1,-1,1);
+    subplot(322);
+    imshow(image_b_);
+    title('(b) Image corrupted by additive salt-and-pepper noise');
+    
+    subplot(323);
+    imshow(arithmetic_mean_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with an arithmetic mean filter');
+    
+    subplot(324);
+    imshow(geometric_mean_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with a geometric mean filter');
+    
+    subplot(325);
+    imshow(median_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with a median filter');
+    
+    subplot(326);
+    imshow(alpha_trimmed_mean_filter(image_b_,5,5,5));
+    title('(c) Image (b) filtered with an alpha-trimmed mean filter');
+end
+% arithmetic mean filter with m*n mask
+function image_ = arithmetic_mean_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    %m and n should be odd numbers
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            image_(r,c) = mean(mean(image(r-m_:r+m_,c-n_:c+n_)));
+        end
+    end
+end
+% geometric mean filter with m*n mask
+function image_ = geometric_mean_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            image_(r,c) = nthroot(prod(prod(
+            image(r-m_:r+m_,c-n_:c+n_))),m*n);
+        end
+    end
+end
+% harmonic mean filter with m*n mask
+function image_ = harmonic_mean_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            image_(r,c) = (m*n)/
+            (sum(sum(1./image(
+            r-m_:r+m_,c-n_:c+n_))));
+        end
+    end
+end
+% contraharmonic mean filter with m*n mask and its oder is q
+function image_ = contraharmonic_mean_filter(image,q,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            image_(r,c) = (sum(sum(image(
+            r-m_:r+m_,c-n_:c+n_).^(q+1))))/
+            (sum(sum(image(
+            r-m_:r+m_,c-n_:c+n_).^q)));
+        end
+    end
+    image_ = real(image_);
+end
+% median filter with m*n mask
+function image_ = median_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            image_(r,c) = median(median(image(r-m_:r+m_,c-n_:c+n_)));
+        end
+    end
+end
+% max filter with m*n mask
+function image_ = max_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            temp = image(r-m_:r+m_,c-n_:c+n_);
+            image_(r,c) = max(temp(:));
+        end
+    end
+end
+% min filter with m*n mask
+function image_ = min_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            temp = image(r-m_:r+m_,c-n_:c+n_);
+            image_(r,c) = min(temp(:));
+        end
+    end
+end
+% midpoint filter with m*n mask
+function image_ = midpoint_filter(image,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            temp = image(r-m_:r+m_,c-n_:c+n_);
+            image_(r,c) = (max(temp(:))+min(temp(:)))/2;
+        end
+    end
+end
+% alpha trimmed mean filter with m*n mask(deleta d pixels)
+function image_ = alpha_trimmed_mean_filter(image,d,m,n)
+    [row,col] = size(image);
+    image_ = image;
+    m_ = floor(m/2);
+    n_ = floor(n/2);
+    for r = ceil(m/2):row-m_
+        for c = ceil(n/2):col-n_
+            temp = image(r-m_:r+m_,c-n_:c+n_);
+            temp_ = sort(temp(:));
+            image_(r,c) = mean(temp_(floor(d/2):m*n-floor(d/2)));
+        end
+    end
+end
+
+% adding noises to image and plot them
+function plot_data_noises(image)
+
+    [row,col] = size(image);
+    image = im2double(image);
+    figure('name','Uniform Noise');
+    n = uniform_noise(row,col,0,0.3);
+    image_=image+n;
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+
+    figure('name','Gaussian Noise');
+    g = gaussian_noise(n,0,0.08);
+    image_ = image+g;
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+
+    figure('name','Rayleigh Noise');
+    r = rayleigh_noise(n,-0.2,0.03);
+    image_ = image+r;
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+
+    
+    figure('name','Exponential Noise');
+    e = exponential_noise(n,25);
+    image_ = image+e;
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+
+    figure('name','Gamma Noise');
+    ga = gamma_noise(n,25,3);
+    image_ = image+ga;
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+
+    figure('name','Impulse Noise');
+    image_ = impulse_noise(image,0.1,0.1,0.2,-0.2);
+    subplot(121);
+    imshow(image_,[]);
+    subplot(122);
+    bar(get_histogram(image_));
+end
+% row*col uniform noise from low~high
+function n = uniform_noise(row,col,low,high)
+    n = low + (high-low)*rand([row col]);
+end
+% normalizing uniform noise to 0~1
+function n = normalized(uniform_noise)
+    max_ = max(uniform_noise(:));
+    min_ = min(uniform_noise(:));
+    n = double(uniform_noise-min_);
+    n = n/double(max_-min_);
+end
+% rayleigh noise
+function n = rayleigh_noise(uniform_noise,a,b)
+    uniform_noise_ = normalized(uniform_noise);
+    n = a + sqrt(-b*log(1-uniform_noise_));
+end
+% exponential noise
+function n = exponential_noise(uniform_noise,a)
+    uniform_noise_ = normalized(uniform_noise);
+    n = -1/a*log(1-uniform_noise_);
+end
+% impulse noise
+function image_ = impulse_noise(image,pa,pb,a,b)
+    [row,col]=size(image);
+    uniform_noise_ = rand([row col]);
+    image_ = image;
+    for r = 1:row
+        for c = 1:col
+            if uniform_noise_(r,c)<pa
+                image_(r,c) = image(r,c)+a;
+            elseif uniform_noise_(r,c)>(1-pb)
+                image_(r,c) = image(r,c)+b;
+            end
+        end
+    end
+end
+% gamma noise
+function n = gamma_noise(uniform_noise_,a,b)
+    uniform_noise_ = normalized(uniform_noise_);
+    n = -1/a*log(1-uniform_noise_);
+    [row,col] = size(uniform_noise_);
+    for i = 2:b
+        uniform_noise__=uniform_noise(row,col,0,1);
+        n = n-1/a*log(1-uniform_noise__);
+    end
+    
+end
+% gaussian noise
+function n = gaussian_noise(uniform_noise,ex,sigma)
+    [row,col] = size(uniform_noise);
+    n_ = normalized(uniform_noise);
+    n = n_;
+    for r = 1:row
+        if mod(col,2)==0
+            for c = 1:2:col
+                n(r,c) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,c+1));
+                n(r,c+1) = sqrt(-2*log(n_(r,c)))*sin(2*pi*n_(r,c+1));
+            end
+        else
+            for c = 1:2:col-1
+                n(r,c) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,c+1));
+                n(r,c+1) = sqrt(-2*log(n_(r,c)))*sin(2*pi*n_(r,c+1));
+            end
+            n(r,col) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,1));
+        end
+    end
+    n = n*double(sigma);
+    n = n+ex;
+end
+% plot image' histogram (but add other 150 to display the negative value)
+function histogram = get_histogram(image)
+    [row,col]=size(image);
+    histogram = zeros(500,1);%-150~350
+    for r = 1:row
+        for c = 1:col
+            gray = int16(image(r,c) /0.004);
+            if gray >349
+                gray = 349;
+            end
+            if gray <-150
+                gray = -150;
+            end
+            histogram(gray+1+150)=histogram(gray+1+150)+1;
+        end
+    end
+end
 \end{lstlisting}
 
 

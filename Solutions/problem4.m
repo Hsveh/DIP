@@ -6,6 +6,7 @@
 %}
 
 %% Main Part
+
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0503.tif');
 plot_data_noises(image);
 

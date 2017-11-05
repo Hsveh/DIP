@@ -52,19 +52,39 @@
 \contentsline {subsection}{\numberline {3.6.2}Gaussian High Pass}{21}{subsection.3.6.2}
 \contentsline {subsubsection}{Gaussian High Pass Filter}{21}{section*.12}
 \contentsline {subsubsection}{Result}{22}{section*.13}
-\contentsline {chapter}{\numberline {4}Generating different types of noise and comparing different noise reduction methods}{23}{chapter.4}
+\contentsline {chapter}{\numberline {4}Noise and different noise reduction methods}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}OverView}{23}{section.4.1}
-\contentsline {section}{\numberline {4.2}This is a section}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}This is a subsection}{23}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}This is a subsection}{23}{subsection.4.2.2}
-\contentsline {chapter}{\numberline {5}Image restoration}{24}{chapter.5}
-\contentsline {section}{\numberline {5.1}OverView}{24}{section.5.1}
-\contentsline {section}{\numberline {5.2}This is a section}{24}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{24}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{24}{subsection.5.2.2}
+\contentsline {section}{\numberline {4.2}Noise}{23}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Uniform Noise}{23}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Gaussian Noise}{24}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Rayleigh Noise}{25}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Erlang(Gamma) Noise}{26}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Exponential Noise}{27}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Impulse Noise}{28}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}Mean Filters}{29}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Filters}{29}{subsection.4.3.1}
+\contentsline {subsubsection}{Arithmetic mean filter}{29}{section*.14}
+\contentsline {subsubsection}{Geometric mean filter}{29}{section*.15}
+\contentsline {subsubsection}{Harmonic mean filter}{29}{section*.16}
+\contentsline {subsubsection}{Contraharmonic mean filter}{29}{section*.17}
+\contentsline {subsection}{\numberline {4.3.2}Results}{29}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Order-Statistic Filters}{31}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Filters}{31}{subsection.4.4.1}
+\contentsline {subsubsection}{Median filter}{31}{section*.18}
+\contentsline {subsubsection}{Max filters}{31}{section*.19}
+\contentsline {subsubsection}{Min filters}{31}{section*.20}
+\contentsline {subsubsection}{Midpoint filter}{31}{section*.21}
+\contentsline {subsubsection}{Alpha-trimmed mean filter}{31}{section*.22}
+\contentsline {subsection}{\numberline {4.4.2}Results}{32}{subsection.4.4.2}
+\contentsline {chapter}{\numberline {5}Image restoration}{34}{chapter.5}
+\contentsline {section}{\numberline {5.1}OverView}{34}{section.5.1}
+\contentsline {section}{\numberline {5.2}This is a section}{34}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{34}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{34}{subsection.5.2.2}
 \gdef \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Codes}{25}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Problem1}{25}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Problem 2}{26}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Problem 3}{29}{section.a.A.3}
+\contentsline {chapter}{\numberline {A}Codes}{35}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Problem1}{35}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Problem 2}{36}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Problem 3}{39}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Problem 4}{46}{section.a.A.4}
 \contentsfinish 
