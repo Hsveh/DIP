@@ -1,5 +1,5 @@
 # DIP
-![License](https://img.shields.io/hexpm/l/plug.svg)
+![Proprietorship](https://img.shields.io/badge/Proprietorship-Private-orange.svg)
 ![Languages](https://img.shields.io/badge/Languages-Matlab-blue.svg)
 ![Languages](https://img.shields.io/badge/Languages-Tex-blue.svg)
 
