@@ -9,7 +9,7 @@ My homework of Digital Image Processing.
 - [x] Problem1
 - [x] Problem2
 - [x] Problem3
-- [ ] Problem4
+- [x] Problem4
 - [ ] Problem5
 - [ ] Problem6
 - [ ] Problem7

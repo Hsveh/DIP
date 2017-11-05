@@ -1,12 +1,142 @@
 %{
+    Problem 4
+    by Fanyong Xue
+	Student ID:515030910443
+    Generating different types of noise and comparing different noise reduction methods
 %}
+
+%% Main Part
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0503.tif');
 plot_data_noises(image);
 
 circuit = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Circuit.tif');
 plot_data_noises(circuit);
+plot_mean_filter(circuit);
+plot_order_statistic_filter(circuit);
 
-
+%% Function Part
+% plot data by mean filters
+function plot_mean_filter(image)
+    figure('name','Mean Filters1');
+    
+    [row,col] = size(image);
+    image = im2double(image);
+    subplot(221);
+    imshow(image);
+    title('(a) X-ray image');
+    
+    n = uniform_noise(row,col,0,0.3);
+    g = gaussian_noise(n,0,0.08);
+    image_b = image+g;
+    subplot(222);
+    imshow(image_b);
+    title('(b) Image corrupted by additive Gaussian noise');
+    
+    subplot(223);
+    imshow(arithmetic_mean_filter(image_b,3,3));
+    title('(c) Result of filtering with an arithmetic mean filter');
+    
+    subplot(224);
+    imshow(geometric_mean_filter(image_b,3,3));
+    title('(d) Result of filtering with a geometric mean filter');
+    
+    figure('name','Mean Filters2');
+    
+    subplot(221);
+    image_a_ = impulse_noise(image,0.1,0,-1,0);
+    imshow(image_a_);
+    title('(a) Image corrupted by pepper noise');
+    
+    subplot(222);
+    image_b_ = impulse_noise(image,0.1,0,1,0);
+    imshow(image_b_);
+    title('(b) Image corrupted by salt noise');
+    
+    
+    subplot(223);
+    imshow(contraharmonic_mean_filter(image_a_,1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter');
+    
+    subplot(224);
+    imshow(contraharmonic_mean_filter(image_b_,-1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter');
+    
+    figure('name','Mean Filters3');
+    
+    subplot(121);
+    imshow(contraharmonic_mean_filter(image_a_,-1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter(Q=-1.5)');
+    
+    subplot(122);
+    imshow(contraharmonic_mean_filter(image_b_,1.5,3,3));
+    title('(c) Result of filtering (a) with a contra-harmonic filter(Q=1.5)');
+end
+% plot data by order statistic filters
+function plot_order_statistic_filter(image)
+    figure('name','Order-Statistic Filters1');
+    image = im2double(image);
+    image_a = impulse_noise(image,0.1,0.1,-1,1);
+    
+    subplot(221);
+    imshow(image_a);
+    title('Image corrupted by salt-and-pepper noise');
+    
+    subplot(222);
+    image_b = median_filter(image_a,3,3);
+    imshow(image_b);
+    title('(b) Result of one pass with a median filter');
+    
+    subplot(223);
+    image_c = median_filter(image_b,3,3);
+    imshow(image_c);
+    title('(c) Result of processing (b) with the same filter');
+    
+    subplot(224);
+    imshow(median_filter(image_c,3,3));
+    title('(d) Result of processing (c) with the same filter');
+    
+    figure('name','Order-Statistic Filters2');
+    
+    image_a__ = impulse_noise(image,0.1,0,-1,0);
+    subplot(121);
+    imshow(max_filter(image_a__,3,3));
+    title('(a) Result of filtering pepper noise with a max filter');
+    
+    image_b__ = impulse_noise(image,0.1,0,1,0);
+    subplot(122);
+    imshow(min_filter(image_b__,3,3));
+    title('(a) Result of filtering salt noise with a min filter');
+    
+    figure('name','Order-Statistic Filters3');
+    [row,col] = size(image);
+    n = uniform_noise(row,col,0,0.3);
+    image_a_ = image + n;
+    subplot(321);
+    imshow(image_a_);
+    title('(a) Image corrupted by additive uniform noise');
+    
+    image_b_ = impulse_noise(image_a_,0.1,0.1,-1,1);
+    subplot(322);
+    imshow(image_b_);
+    title('(b) Image corrupted by additive salt-and-pepper noise');
+    
+    subplot(323);
+    imshow(arithmetic_mean_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with an arithmetic mean filter');
+    
+    subplot(324);
+    imshow(geometric_mean_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with a geometric mean filter');
+    
+    subplot(325);
+    imshow(median_filter(image_b_,5,5));
+    title('(c) Image (b) filtered with a median filter');
+    
+    subplot(326);
+    imshow(alpha_trimmed_mean_filter(image_b_,5,5,5));
+    title('(c) Image (b) filtered with an alpha-trimmed mean filter');
+end
+% arithmetic mean filter with m*n mask
 function image_ = arithmetic_mean_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -19,6 +149,7 @@ function image_ = arithmetic_mean_filter(image,m,n)
         end
     end
 end
+% geometric mean filter with m*n mask
 function image_ = geometric_mean_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -30,6 +161,7 @@ function image_ = geometric_mean_filter(image,m,n)
         end
     end
 end
+% harmonic mean filter with m*n mask
 function image_ = harmonic_mean_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -41,6 +173,7 @@ function image_ = harmonic_mean_filter(image,m,n)
         end
     end
 end
+% contraharmonic mean filter with m*n mask and its oder is q
 function image_ = contraharmonic_mean_filter(image,q,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -51,7 +184,9 @@ function image_ = contraharmonic_mean_filter(image,q,m,n)
             image_(r,c) = (sum(sum(image(r-m_:r+m_,c-n_:c+n_).^(q+1))))/(sum(sum(image(r-m_:r+m_,c-n_:c+n_).^q)));
         end
     end
+    image_ = real(image_);
 end
+% median filter with m*n mask
 function image_ = median_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -63,6 +198,7 @@ function image_ = median_filter(image,m,n)
         end
     end
 end
+% max filter with m*n mask
 function image_ = max_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -75,6 +211,7 @@ function image_ = max_filter(image,m,n)
         end
     end
 end
+% min filter with m*n mask
 function image_ = min_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -87,6 +224,7 @@ function image_ = min_filter(image,m,n)
         end
     end
 end
+% midpoint filter with m*n mask
 function image_ = midpoint_filter(image,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -99,6 +237,7 @@ function image_ = midpoint_filter(image,m,n)
         end
     end
 end
+% alpha trimmed mean filter with m*n mask(deleta d pixels)
 function image_ = alpha_trimmed_mean_filter(image,d,m,n)
     [row,col] = size(image);
     image_ = image;
@@ -113,6 +252,7 @@ function image_ = alpha_trimmed_mean_filter(image,d,m,n)
     end
 end
 
+% plot data that 
 function plot_data_noises(image)
 
     [row,col] = size(image);
@@ -159,8 +299,7 @@ function plot_data_noises(image)
     bar(get_histogram(image_));
 
     figure('name','Impulse Noise');
-    im = impulse_noise(n,0.15);
-    image_ = image+im;
+    image_ = impulse_noise(image,0.1,0.1,0.2,-0.2);
     subplot(121);
     imshow(image_,[]);
     subplot(122);
@@ -183,15 +322,16 @@ function n = exponential_noise(uniform_noise,a)
     uniform_noise_ = normalized(uniform_noise);
     n = -1/a*log(1-uniform_noise_);
 end
-function n = impulse_noise(uniform_noise,threshold)
-    [row,col]=size(uniform_noise);
-    n = double(zeros(row,col));
+function image_ = impulse_noise(image,pa,pb,a,b)
+    [row,col]=size(image);
+    uniform_noise_ = rand([row col]);
+    image_ = image;
     for r = 1:row
         for c = 1:col
-            if uniform_noise(r,c)>threshold
-                n(r,c) = 1;
-            else
-                n(r,c) = 0;
+            if uniform_noise_(r,c)<pa
+                image_(r,c) = image(r,c)+a;
+            elseif uniform_noise_(r,c)>(1-pb)
+                image_(r,c) = image(r,c)+b;
             end
         end
     end
