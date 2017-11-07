@@ -11,7 +11,7 @@ My homework of Digital Image Processing.
 - [x] Problem3
 - [x] Problem4
 - [ ] Problem5
-- [ ] Problem6
+- [x] Problem6
 - [ ] Problem7
 - [ ] Problem8
 - [ ] Problem9
@@ -23,7 +23,7 @@ My homework of Digital Image Processing.
 - [x] Problem3
 - [x] Problem4
 - [ ] Problem5
-- [ ] Problem6
+- [x] Problem6
 - [ ] Problem7
 - [ ] Problem8
 - [ ] Problem9
