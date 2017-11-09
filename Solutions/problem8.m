@@ -9,9 +9,17 @@ c = dilate(b,51,1);
 figure();
 imshow(c);
 
-d = rd(b,image);
+d = rd(b,image,8);
 figure();
 imshow(d);
+
+e=filling_holes(image);
+figure();
+imshow(e);
+
+f = border_clearing(image);
+figure();
+imshow(f);
 function image_ = dilate(image,mask_size_x,mask_size_y)
     [row,col] = size(image);
     %{
@@ -51,17 +59,17 @@ function image_ = erode(image,mask_size_x,mask_size_y)
     end
 end
 
-function image_ = rd(F,G)
-    %figure();
+function image_ = rd(F,G,f)
+    figure(f);
     pre_DGF = logical(and_image(dilate(F,3,3),G));
     DGF = logical(and_image(dilate(pre_DGF,3,3),G));
     while image_different(pre_DGF,DGF)
         pre_DGF = DGF;
         DGF = logical(and_image(dilate(pre_DGF,3,3),G));
-        %imshow(DGF);
+        imshow(DGF);
     end
     image_ = DGF;
-    %close(figure());
+    close(figure(f));
 end
 
 function image_ = re(F,G)
@@ -82,4 +90,23 @@ function image_ = or_image(image1,image2)
 end
 function v = image_different(image1,image2)
     v = sum(sum(image1-image2));
+end
+function image_ = filling_holes(image)
+    image_c = ~image;
+    [row,col] = size(image);
+    image_ = ones(row,col) - image;
+    image_(2:row-1,2:col-1) = zeros(row-2,col-2);
+    image_ = logical(image_);
+    image_h = rd(image_,image_c,9);
+    image_ = ~image_h;
+    
+end
+function image_ = border_clearing(image)
+    [row,col] = size(image);
+    image_f = image;
+    image_f(2:row-1,2:col-1) = zeros(row-2,col-2);
+    image_f = logical(image_f);
+    
+    image_ = image - rd(image_f,image,7);
+    
 end
