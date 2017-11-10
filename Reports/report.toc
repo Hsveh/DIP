@@ -1,105 +1,117 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Histogram Equalization}{4}{chapter.1}
-\contentsline {section}{\numberline {1.1}OverView}{4}{section.1.1}
-\contentsline {section}{\numberline {1.2}Generate the Histogram}{4}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Function}{4}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Histogram}{4}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}Transfer Function}{5}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Implement the Histogram Equalization Technique}{5}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Transfer Function}{6}{subsection.1.3.2}
-\contentsline {section}{\numberline {1.4}Enhanced Images}{7}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Enhanced Function}{7}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Enhanced Images}{7}{subsection.1.4.2}
-\contentsline {chapter}{\numberline {2}Combining spatial enhancement methods}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}OverView}{9}{section.2.1}
-\contentsline {section}{\numberline {2.2}Image b}{9}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Laplacian Transform Filter}{9}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Laplacian Transform}{9}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Image c}{10}{section.2.3}
-\contentsline {section}{\numberline {2.4}Image d}{11}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Sobel Gradient Masks}{11}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Image d}{11}{subsection.2.4.2}
-\contentsline {section}{\numberline {2.5}Image e}{12}{section.2.5}
-\contentsline {section}{\numberline {2.6}Image f}{13}{section.2.6}
-\contentsline {section}{\numberline {2.7}Image g}{14}{section.2.7}
-\contentsline {section}{\numberline {2.8}Image h}{15}{section.2.8}
-\contentsline {subsection}{\numberline {2.8.1}Power-Law Transformation}{15}{subsection.2.8.1}
-\contentsline {subsection}{\numberline {2.8.2}Image h}{15}{subsection.2.8.2}
-\contentsline {chapter}{\numberline {3}Filtering in frequency domain}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}OverView}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}Fourier Transform}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Transform Function}{16}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Fast Fourier Transform}{16}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Filtering}{16}{section.3.3}
-\contentsline {section}{\numberline {3.4}Ideal Filter}{17}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Ideal Low Pass}{17}{subsection.3.4.1}
-\contentsline {subsubsection}{Ideal Low Pass Filter}{17}{section*.2}
-\contentsline {subsubsection}{Result}{17}{section*.3}
-\contentsline {subsection}{\numberline {3.4.2}Ideal High Pass}{18}{subsection.3.4.2}
-\contentsline {subsubsection}{Ideal High Pass Filter}{18}{section*.4}
-\contentsline {subsubsection}{Result}{18}{section*.5}
-\contentsline {section}{\numberline {3.5}Butterworth Filter}{19}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Butterworth Low Pass}{19}{subsection.3.5.1}
-\contentsline {subsubsection}{Butterworth Low Pass Filter}{19}{section*.6}
-\contentsline {subsubsection}{Result}{19}{section*.7}
-\contentsline {subsection}{\numberline {3.5.2}Butterworth High Pass}{19}{subsection.3.5.2}
-\contentsline {subsubsection}{Butterworth High Pass Filter}{19}{section*.8}
-\contentsline {subsubsection}{Result}{20}{section*.9}
-\contentsline {section}{\numberline {3.6}Gaussian Filter}{21}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Gaussian Low Pass}{21}{subsection.3.6.1}
-\contentsline {subsubsection}{Gaussian Low Pass Filter}{21}{section*.10}
-\contentsline {subsubsection}{Result}{21}{section*.11}
-\contentsline {subsection}{\numberline {3.6.2}Gaussian High Pass}{21}{subsection.3.6.2}
-\contentsline {subsubsection}{Gaussian High Pass Filter}{21}{section*.12}
-\contentsline {subsubsection}{Result}{22}{section*.13}
-\contentsline {chapter}{\numberline {4}Noise and different noise reduction methods}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}OverView}{23}{section.4.1}
-\contentsline {section}{\numberline {4.2}Noise}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Uniform Noise}{23}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Gaussian Noise}{24}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Rayleigh Noise}{25}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Erlang(Gamma) Noise}{26}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Exponential Noise}{27}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Impulse Noise}{28}{subsection.4.2.6}
-\contentsline {section}{\numberline {4.3}Mean Filters}{29}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Filters}{29}{subsection.4.3.1}
-\contentsline {subsubsection}{Arithmetic mean filter}{29}{section*.14}
-\contentsline {subsubsection}{Geometric mean filter}{29}{section*.15}
-\contentsline {subsubsection}{Harmonic mean filter}{29}{section*.16}
-\contentsline {subsubsection}{Contraharmonic mean filter}{29}{section*.17}
-\contentsline {subsection}{\numberline {4.3.2}Results}{29}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Order-Statistic Filters}{31}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Filters}{31}{subsection.4.4.1}
-\contentsline {subsubsection}{Median filter}{31}{section*.18}
-\contentsline {subsubsection}{Max filters}{31}{section*.19}
-\contentsline {subsubsection}{Min filters}{31}{section*.20}
-\contentsline {subsubsection}{Midpoint filter}{31}{section*.21}
-\contentsline {subsubsection}{Alpha-trimmed mean filter}{31}{section*.22}
-\contentsline {subsection}{\numberline {4.4.2}Results}{32}{subsection.4.4.2}
-\contentsline {chapter}{\numberline {5}Image restoration}{34}{chapter.5}
-\contentsline {section}{\numberline {5.1}OverView}{34}{section.5.1}
-\contentsline {section}{\numberline {5.2}This is a section}{34}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{34}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{34}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Geometric transform}{35}{chapter.6}
-\contentsline {section}{\numberline {6.1}OverView}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}Spatial Transformation}{35}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Rotate}{35}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Results}{35}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Translate}{37}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Results}{37}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Scaling}{39}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}Results}{39}{subsection.6.2.6}
-\contentsline {section}{\numberline {6.3}Interpolation Methods}{41}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Methods}{41}{subsection.6.3.1}
-\contentsline {subsubsection}{Nearest Neighbor Interpolation}{41}{section*.23}
-\contentsline {subsubsection}{Bilinear Interpolation}{41}{section*.24}
-\contentsline {subsection}{\numberline {6.3.2}Results}{41}{subsection.6.3.2}
+\contentsline {chapter}{\numberline {1}Histogram Equalization}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}OverView}{5}{section.1.1}
+\contentsline {section}{\numberline {1.2}Generate the Histogram}{5}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Function}{5}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Histogram}{5}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Transfer Function}{6}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Implement the Histogram Equalization Technique}{6}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Transfer Function}{7}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Enhanced Images}{8}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Enhanced Function}{8}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Enhanced Images}{8}{subsection.1.4.2}
+\contentsline {chapter}{\numberline {2}Combining spatial enhancement methods}{10}{chapter.2}
+\contentsline {section}{\numberline {2.1}OverView}{10}{section.2.1}
+\contentsline {section}{\numberline {2.2}Image b}{10}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Laplacian Transform Filter}{10}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Laplacian Transform}{10}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Image c}{11}{section.2.3}
+\contentsline {section}{\numberline {2.4}Image d}{12}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Sobel Gradient Masks}{12}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Image d}{12}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Image e}{13}{section.2.5}
+\contentsline {section}{\numberline {2.6}Image f}{14}{section.2.6}
+\contentsline {section}{\numberline {2.7}Image g}{15}{section.2.7}
+\contentsline {section}{\numberline {2.8}Image h}{16}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Power-Law Transformation}{16}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Image h}{16}{subsection.2.8.2}
+\contentsline {chapter}{\numberline {3}Filtering in frequency domain}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}OverView}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Fourier Transform}{17}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Transform Function}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Fast Fourier Transform}{17}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Filtering}{17}{section.3.3}
+\contentsline {section}{\numberline {3.4}Ideal Filter}{18}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Ideal Low Pass}{18}{subsection.3.4.1}
+\contentsline {subsubsection}{Ideal Low Pass Filter}{18}{section*.2}
+\contentsline {subsubsection}{Result}{18}{section*.3}
+\contentsline {subsection}{\numberline {3.4.2}Ideal High Pass}{19}{subsection.3.4.2}
+\contentsline {subsubsection}{Ideal High Pass Filter}{19}{section*.4}
+\contentsline {subsubsection}{Result}{19}{section*.5}
+\contentsline {section}{\numberline {3.5}Butterworth Filter}{20}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Butterworth Low Pass}{20}{subsection.3.5.1}
+\contentsline {subsubsection}{Butterworth Low Pass Filter}{20}{section*.6}
+\contentsline {subsubsection}{Result}{20}{section*.7}
+\contentsline {subsection}{\numberline {3.5.2}Butterworth High Pass}{20}{subsection.3.5.2}
+\contentsline {subsubsection}{Butterworth High Pass Filter}{20}{section*.8}
+\contentsline {subsubsection}{Result}{21}{section*.9}
+\contentsline {section}{\numberline {3.6}Gaussian Filter}{22}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Gaussian Low Pass}{22}{subsection.3.6.1}
+\contentsline {subsubsection}{Gaussian Low Pass Filter}{22}{section*.10}
+\contentsline {subsubsection}{Result}{22}{section*.11}
+\contentsline {subsection}{\numberline {3.6.2}Gaussian High Pass}{22}{subsection.3.6.2}
+\contentsline {subsubsection}{Gaussian High Pass Filter}{22}{section*.12}
+\contentsline {subsubsection}{Result}{23}{section*.13}
+\contentsline {chapter}{\numberline {4}Noise and different noise reduction methods}{24}{chapter.4}
+\contentsline {section}{\numberline {4.1}OverView}{24}{section.4.1}
+\contentsline {section}{\numberline {4.2}Noise}{24}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Uniform Noise}{24}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Gaussian Noise}{25}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Rayleigh Noise}{26}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Erlang(Gamma) Noise}{27}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Exponential Noise}{28}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Impulse Noise}{29}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}Mean Filters}{30}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Filters}{30}{subsection.4.3.1}
+\contentsline {subsubsection}{Arithmetic mean filter}{30}{section*.14}
+\contentsline {subsubsection}{Geometric mean filter}{30}{section*.15}
+\contentsline {subsubsection}{Harmonic mean filter}{30}{section*.16}
+\contentsline {subsubsection}{Contraharmonic mean filter}{30}{section*.17}
+\contentsline {subsection}{\numberline {4.3.2}Results}{30}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Order-Statistic Filters}{32}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Filters}{32}{subsection.4.4.1}
+\contentsline {subsubsection}{Median filter}{32}{section*.18}
+\contentsline {subsubsection}{Max filters}{32}{section*.19}
+\contentsline {subsubsection}{Min filters}{32}{section*.20}
+\contentsline {subsubsection}{Midpoint filter}{32}{section*.21}
+\contentsline {subsubsection}{Alpha-trimmed mean filter}{32}{section*.22}
+\contentsline {subsection}{\numberline {4.4.2}Results}{33}{subsection.4.4.2}
+\contentsline {chapter}{\numberline {5}Image restoration}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}OverView}{35}{section.5.1}
+\contentsline {section}{\numberline {5.2}This is a section}{35}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}This is a subsection}{35}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}This is a subsection}{35}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Geometric transform}{36}{chapter.6}
+\contentsline {section}{\numberline {6.1}OverView}{36}{section.6.1}
+\contentsline {section}{\numberline {6.2}Spatial Transformation}{36}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Rotate}{36}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Results}{36}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Translate}{38}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Results}{38}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Scaling}{40}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}Results}{40}{subsection.6.2.6}
+\contentsline {section}{\numberline {6.3}Interpolation Methods}{42}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Methods}{42}{subsection.6.3.1}
+\contentsline {subsubsection}{Nearest Neighbor Interpolation}{42}{section*.23}
+\contentsline {subsubsection}{Bilinear Interpolation}{42}{section*.24}
+\contentsline {subsection}{\numberline {6.3.2}Results}{42}{subsection.6.3.2}
+\contentsline {chapter}{\numberline {7}Geometric transform}{45}{chapter.7}
+\contentsline {section}{\numberline {7.1}OverView}{45}{section.7.1}
+\contentsline {section}{\numberline {7.2}Erosion and Dilation}{45}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Erosion}{45}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Dilation}{46}{subsection.7.2.2}
+\contentsline {section}{\numberline {7.3}Geodesic dilation and erosion}{46}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Geodesic dilation}{46}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Geodesic erosion}{46}{subsection.7.3.2}
+\contentsline {section}{\numberline {7.4}Opening by reconstruction}{47}{section.7.4}
+\contentsline {section}{\numberline {7.5}Filling holes}{48}{section.7.5}
+\contentsline {section}{\numberline {7.6}Border clearing}{49}{section.7.6}
 \gdef \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Codes}{44}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Problem1}{44}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Problem 2}{45}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Problem 3}{48}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Problem 4}{55}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Problem 6}{63}{section.a.A.5}
+\contentsline {chapter}{\numberline {A}Codes}{50}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Problem1}{50}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Problem 2}{51}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Problem 3}{54}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Problem 4}{61}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Problem 6}{69}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Problem 8}{74}{section.a.A.6}
 \contentsfinish 

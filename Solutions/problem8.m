@@ -1,3 +1,11 @@
+%{
+    Problem 8
+    by Fanyong Xue
+	Student ID:515030910443
+    Morpholigical Processing
+%}
+
+%% Main Part
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0929(a)(text_image).tif');
 figure();
 imshow(image);
@@ -20,6 +28,8 @@ imshow(e);
 f = border_clearing(image);
 figure();
 imshow(f);
+
+%% Function Part
 function image_ = dilate(image,mask_size_x,mask_size_y)
     [row,col] = size(image);
     %{

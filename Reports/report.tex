@@ -12,12 +12,12 @@
 \usepackage{verbatim}
 \usepackage{listings} 
 \usepackage{amsmath}
-
-%%%%%%%%%%%%%%%% hyperref
+\usepackage{amssymb}
+%%%%%%%%%%%%%%%% hype{}rref
 \usepackage{lipsum}
 \usepackage{graphicx}
 \XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
+\XeTeXlinebreakskip = 0pt plus 1pt{}
 \usepackage[verbose]{hyperref}
 \hypersetup{ 
     hidelinks
@@ -725,6 +725,111 @@ We use the four nearest neighbors to estimate the intensity at a given location.
 
 \newpage
 
+\chapter{Geometric transform}
+\section{OverView}
+
+Implement the “Opening by reconstruction”, “Filling holes” and “Border clearing” operations on pages 681-683 (pp.659-661 for the electronic textbook), and reproduce the results in Figure 9.29, Figures 9.31, and Figure 9.32.
+
+\section{Erosion and Dilation}
+\subsection{Erosion}
+With $A$ and $B$ as sets in $Z^2$ , the erosion of $A$ by $B$, denoted $A \ominus B$, is defined as
+\begin{align}
+  A \ominus B = \{z|(B)_z\subseteq A\}
+\end{align}
+or
+\begin{align}
+  A \ominus B = \{z|(B)_z\cap A^c = \varnothing\}
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.8\textwidth]{images/8/image.jpg}
+   \caption{Original Image}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.8\textwidth]{images/8/image_er.jpg}
+   \caption{Erosion of Figure 7.1}
+\end{figure}
+\newpage
+\subsection{Dilation}
+With $A$ and $B$ as sets in $Z^2$ , the erosion of $A$ by $B$, denoted $A \oplus B$, is defined as
+\begin{align}
+  A \ominus B = \{z|\hat{(B)_z}\cap A\neq \varnothing\}
+\end{align}
+or
+\begin{align}
+  A \ominus B = \{z|[\hat{(B)_z}\cap A] \subseteq A\}
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/8/image_di.jpg}
+   \caption{Erosion of Figure 7.2}
+\end{figure}
+
+\section{Geodesic dilation and erosion}
+\subsection{Geodesic dilation}
+Let $F$ denote the marker image and $G$ the mask image. It is assumed in this discussion that both are binary images and that $F \subseteq G$. The $geodesic\ dilation$ of size 1 of the marker image with respect to the mask, denoted by $D_G^{(1)}(F)$, is defined as
+\begin{align}
+  D_G^{(1)}(F) = (F \oplus B)\cap G
+\end{align}
+The $geodesic\ dilation$ of size $n$ of $F$ with respect to $G$ is defined as
+\begin{align}
+  D_G^{(n)}(F) = D_G^{(1)}[D_G^{(n-1)}(F)]
+\end{align}
+\subsection{Geodesic erosion}
+Similarly, the $geodesic\ erosion$ of size 1 of marker $F$ with respect to mask $G$ is defined as
+\begin{align}
+  E_G^{(1)}(F) = (F \ominus B)\cup G
+\end{align}
+The $geodesic\ erosion$ of size $n$ of $F$ with respect to $G$ is defined as
+\begin{align}
+  E_G^{(n)}(F) = E_G^{(1)}[E_G^{(n-1)}(F)]
+\end{align}
+
+\section{Opening by reconstruction}
+$Opening\ by\ reconstruction$ restores $exactly$ the shapes of the objects that remain after erosion.The opening by reconstruction of size $n$ of an image $F$ is defined as the reconstruction by dilation of $F$ from the erosion of size $n$ of $F$; that is,
+\begin{align}
+  O_R^{(n)}(F)=R_F^D[(F\ominus nB)]
+\end{align}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/8/image_1.jpg}
+   \caption{Opening by reconstruction of Figure 7.3}
+\end{figure}
+\newpage
+\section{Filling holes}
+Let $I(x, y)$ denote a binary image and suppose that we form a marker image $F$ that is 0 everywhere, except at the image border, where it is set to 1 - $I$; that is,
+\begin{eqnarray}F(x,y)=
+\begin{cases}
+1-I(x,y), &if\ (x, y)\ is\ on\ the\ border\ of\ I \cr 0,&otherwise\end{cases}
+\end{eqnarray}
+Then
+\begin{align}
+H = [R_{I^c}^D(F)]^c
+\end{align}
+is a binary image equal to $I$ with all holes filled.
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/8/image_2.jpg}
+   \caption{Filling holes of Figure 7.1}
+\end{figure}
+\newpage
+\section{Border clearing}
+We use the original image as the mask and the following marker image:
+\begin{eqnarray}F(x,y)=
+\begin{cases}
+I(x,y), &if\ (x, y)\ is\ on\ the\ border\ of\ I \cr 0,&otherwise\end{cases}
+\end{eqnarray}
+The border-Eclearing algorithm first computes the morphological reconstruction $R_I^D(F)$ (which simply extracts the objects touching the border) and then computes the difference
+\begin{align}
+  X=I-R_I^D(F)
+\end{align}
+to obtain an image, $X$, with no objects touching the border.
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/8/image_3.jpg}
+   \caption{Border clearing of Figure 7.1}
+\end{figure}
 %%%%%%
 \begin{appendices}
 \chapter{Codes}
@@ -1336,8 +1441,9 @@ end
 %{
     Problem 4
     by Fanyong Xue
-  Student ID:515030910443
-    Generating different types of noise and comparing different noise reduction methods
+    Student ID:515030910443
+    Generating different types of noise and 
+    comparing different noise reduction methods
 %}
 
 %% Main Part
@@ -1863,7 +1969,8 @@ function image_ = rotate(image,angle,interpolation)
     
     image_ = uint8(image_);
 end
-% find the nearest point(up,down,left,right if have) which value is not -1
+% find the nearest point(up,down,left,right if have) 
+% which value is not -1
 % and store them on v
 function v = find_nearest(image,x,y)
     [row,col] = size(image);
@@ -1965,6 +2072,148 @@ function image_ = scale(image,cx,cy,interpolation)
     image_ = uint8(image_);
 end
 \end{lstlisting}
+
+
+
+\section{Problem 8}
+
+\begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
+%{
+    Problem 8
+    by Fanyong Xue
+    Student ID:515030910443
+    Morpholigical Processing
+%}
+
+%% Main Part
+image = imread('Image Path/Fig0929(a)(text_image).tif');
+figure();
+imshow(image);
+
+b=erode(image,51,1);
+figure();
+imshow(b);
+c = dilate(b,51,1);
+figure();
+imshow(c);
+
+d = rd(b,image,8);
+figure();
+imshow(d);
+
+e=filling_holes(image);
+figure();
+imshow(e);
+
+f = border_clearing(image);
+figure();
+imshow(f);
+
+%% Function Part
+function image_ = dilate(image,mask_size_x,mask_size_y)
+    [row,col] = size(image);
+    %{
+    image_ = zeros(row,col);
+    
+    image = [zeros(row,floor(mask_size_y/2)) image 
+              zeros(row,floor(mask_size_y/2))];
+    image = [zeros(floor(mask_size_x/2),col+mask_size_y-1);image;
+        zeros(floor(mask_size_x/2),col+mask_size_y-1)];
+
+    for r = 1:row
+        for c = 1:col
+            image_(r,c) = logical(max(max(image(r:r+mask_size_x-1,
+                              c:c+mask_size_y-1))));
+        end
+    end
+    %}
+    image_ = zeros(row+mask_size_x-1,col+mask_size_y-1);%append
+    for r = 1:row
+        for c = 1:col
+            if image(r,c)
+                image_(r:r+mask_size_x-1,c:c+mask_size_y-1) = 
+                          ones(mask_size_x,mask_size_y);
+            end
+        end
+    end
+    image_ = logical(image_(ceil(mask_size_x/2):
+            row+floor(mask_size_x/2),
+            ceil(mask_size_y/2):
+            col+floor(mask_size_y/2)));
+end
+
+function image_ = erode(image,mask_size_x,mask_size_y)
+    [row,col] = size(image);
+    image_ = zeros(row,col);
+    
+    image = [ones(row,floor(mask_size_y/2)) 
+            image ones(row,floor(mask_size_y/2))];
+    image = [ones(floor(mask_size_x/2),col+mask_size_y-1);image;
+          ones(floor(mask_size_x/2),col+mask_size_y-1)];
+
+    for r = 1:row
+        for c = 1:col
+            image_(r,c) = logical(min(min(image(r:r+mask_size_x-1,
+                      c:c+mask_size_y-1))));
+        end
+    end
+end
+
+function image_ = rd(F,G,f)
+    figure(f);
+    pre_DGF = logical(and_image(dilate(F,3,3),G));
+    DGF = logical(and_image(dilate(pre_DGF,3,3),G));
+    while image_different(pre_DGF,DGF)
+        pre_DGF = DGF;
+        DGF = logical(and_image(dilate(pre_DGF,3,3),G));
+        imshow(DGF);
+    end
+    image_ = DGF;
+    close(figure(f));
+end
+
+function image_ = re(F,G)
+    pre_DGF = logical(or_image(erode(F,3,3),G));
+    DGF = logical(or_image(erode(pre_DGF,3,3),G));
+    while image_different(pre_DGF,DGF)
+        pre_DGF = DGF;
+        DGF = logical(and_image(erode(pre_DGF,3,3),G));
+    end
+    image_ = DGF;
+end
+
+function image_ = and_image(image1,image2)
+    image_ = image1&image2;
+end
+function image_ = or_image(image1,image2)
+    image_ = image1|image2;
+end
+function v = image_different(image1,image2)
+    v = sum(sum(image1-image2));
+end
+function image_ = filling_holes(image)
+    image_c = ~image;
+    [row,col] = size(image);
+    image_ = ones(row,col) - image;
+    image_(2:row-1,2:col-1) = zeros(row-2,col-2);
+    image_ = logical(image_);
+    image_h = rd(image_,image_c,9);
+    image_ = ~image_h;
+    
+end
+function image_ = border_clearing(image)
+    [row,col] = size(image);
+    image_f = image;
+    image_f(2:row-1,2:col-1) = zeros(row-2,col-2);
+    image_f = logical(image_f);
+    
+    image_ = image - rd(image_f,image,7);
+    
+end
+\end{lstlisting}
+
+
+
 
 \end{appendices}
 
