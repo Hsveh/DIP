@@ -6,6 +6,7 @@
 %}
 
 %% Main Part
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0929(a)(text_image).tif');
 figure();
 imshow(image);

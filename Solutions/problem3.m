@@ -8,6 +8,7 @@
 %}
 
 %% Main Part
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/characters_test_pattern.tif');
 
 ideal_low_plot_data(image);

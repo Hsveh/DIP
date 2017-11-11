@@ -106,12 +106,24 @@
 \contentsline {section}{\numberline {7.4}Opening by reconstruction}{47}{section.7.4}
 \contentsline {section}{\numberline {7.5}Filling holes}{48}{section.7.5}
 \contentsline {section}{\numberline {7.6}Border clearing}{49}{section.7.6}
+\contentsline {chapter}{\numberline {8}Image segmentation-P9}{50}{chapter.8}
+\contentsline {section}{\numberline {8.1}OverView}{50}{section.8.1}
+\contentsline {section}{\numberline {8.2}Edge Detectors}{50}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Roberts}{50}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Prewitt}{52}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}Sobel}{54}{subsection.8.2.3}
+\contentsline {subsection}{\numberline {8.2.4}Marr-Hildreth}{56}{subsection.8.2.4}
+\contentsline {subsection}{\numberline {8.2.5}Canny}{56}{subsection.8.2.5}
+\contentsline {section}{\numberline {8.3}Thresholding Segmentation}{56}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}Global Thresholding}{56}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}Otsu}{56}{subsection.8.3.2}
 \gdef \@chapapp {\appendixname }
-\contentsline {chapter}{\numberline {A}Codes}{50}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Problem1}{50}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Problem 2}{51}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Problem 3}{54}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Problem 4}{61}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Problem 6}{69}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Problem 8}{74}{section.a.A.6}
+\contentsline {chapter}{\numberline {A}Codes}{57}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Problem1}{57}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Problem 2}{58}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Problem 3}{61}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Problem 4}{68}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Problem 6}{76}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Problem 8}{81}{section.a.A.6}
+\contentsline {section}{\numberline {A.7}Problem9}{83}{section.a.A.7}
 \contentsfinish 

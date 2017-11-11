@@ -5,6 +5,7 @@
 % Combining spatial enhancement methods
 
 %% Main Part
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/skeleton_orig.tif');
 [row,col] = size(image);
 mask = [-1 -1 -1;-1 8 -1;-1 -1 -1];

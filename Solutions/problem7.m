@@ -1,5 +1,6 @@
 %{
 %}
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/lenna.tif');
 image = im2double(image);
 zonal_mask = [1 1 1 1 1 ;1 1 1 1 0;1 1 1 0 0;1 1 0 0 0;1 0 0 0 0];

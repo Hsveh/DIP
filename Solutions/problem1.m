@@ -4,6 +4,7 @@
 % Histogram Equalizatio
 
 %% Main Part
+clear all
 image1 = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig1.jpg');
 image2 = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig2.jpg');
 

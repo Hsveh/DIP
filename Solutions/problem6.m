@@ -6,7 +6,7 @@
 %}
 
 %% Main Part
-
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/ray_trace_bottle.tif');
 figure('name','rotate');
 subplot(311);

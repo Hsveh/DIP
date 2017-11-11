@@ -1,7 +1,7 @@
 %{
 
 %}
-
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/book_cover.jpg');
 image = im2double(image);
 [row,col] = size(image);

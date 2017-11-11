@@ -14,7 +14,7 @@ My homework of Digital Image Processing.
 - [x] Problem6
 - [ ] Problem7
 - [x] Problem8
-- [ ] Problem9
+- [x] Problem9
 - [ ] Problem10
 
 ### Reports
