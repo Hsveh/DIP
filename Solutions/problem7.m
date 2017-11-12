@@ -11,7 +11,7 @@ threshold_mask = [1 1 0 1 1 0 0 0;1 1 1 1 0 0 0 0;1 1 0 0 0 0 0 0;1 0 0 0 0 0 0 
 threshold_mask = [threshold_mask;zeros(1,8);0 1 0 0 0 0 0 0;zeros(2,8)];
 
 figure();
-imshow(haar(image,1));
+imshow(haar(image,2),[]);
 
 function image_p = get_part(image,part)
     [row,col] = size(image);
@@ -37,7 +37,7 @@ function image_ = haar(image,round)
         image_(row/(2^r)+1:row/(2^(r-1)),col/(2^r)+1:col/(2^(r-1))) = (get_part(image,1)-get_part(image,2)-get_part(image,3)+get_part(image,4))/2;
         image = image_(1:row/(2^r),1:col/(2^r));
     end
-    
+    image_ = image_(1:row/(2^round),1:col/(2^round));
 end
 
 

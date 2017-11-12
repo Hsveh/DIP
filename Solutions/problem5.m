@@ -5,7 +5,18 @@ clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/book_cover.jpg');
 image = im2double(image);
 [row,col] = size(image);
+
+image_f = fft2(image);
+h=blurring_degradation(row,col,0.1,0.1,1);
+k=h.*image_f;
+image_t = ifft2(k);
+image_i=wiener_filter(k,h,0);
+figure,imshow(image_i,[]);
+
+image__ = double(im2uint8(abs(image_t))) + gaussian_noise(row,col,0,2);
 figure();
+imshow(image__,[]);
+%{
 subplot(131);
 imshow(image);
 filter = blurring_degradation(2*row,2*col,0.1,0.1,1);
@@ -13,10 +24,8 @@ image_ = transfer(image,filter);
 subplot(132);
 imshow(image_,[]);
 
-image__ = image_ + guassian(row,col,0,650);
-subplot(132);
-imshow(image_,[]);
 
+%}
 function h = blurring_degradation(row,col,a,b,T)
     h = double(zeros(row,col));
     for u  = 1:row
@@ -57,4 +66,15 @@ function n = gaussian_noise(row,col,ex,sigma)
     end
     n = n*double(sigma);
     n = n+ex;
+end
+function image_ = inverse_filter(g,h)
+    image_ = g./h;
+    image_ = ifft2(image_);
+    image_ = abs(image_);
+end
+
+function image_ = wiener_filter(g,h,k)
+    image_ = ((conj(h).*h)./((conj(h).*h)+k)).*g./h;
+    image_ = ifft2(image_);
+    image_ = abs(image_);
 end
