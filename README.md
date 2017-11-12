@@ -2,6 +2,7 @@
 ![Proprietorship](https://img.shields.io/badge/Proprietorship-Private-orange.svg)
 ![Languages](https://img.shields.io/badge/Languages-Matlab-blue.svg)
 ![Languages](https://img.shields.io/badge/Languages-Tex-blue.svg)
+![Status](https://img.shields.io/badge/Status-7/8-blue.svg)
 
 My homework of Digital Image Processing.
 ### Codes
