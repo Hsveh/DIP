@@ -44,11 +44,8 @@ figure('name','Roberts');
 imshow(k1__+k2__,[]);
 
 figure('name','Marr Hildreth');
-[image_m1,image_m2]=Marr_Hildreth(image,4,25);
-subplot(121);
+image_m1=Marr_Hildreth(image,4,25);
 imshow(image_m1);
-subplot(122);
-imshow(image_m2);
 
 figure('name','Canny');
 imshow(Canny(image));
@@ -94,7 +91,7 @@ function [image_x,image_y] = detectors(image,mask_x,mask_y)
 
 end
 
-function [image__,image_] = Marr_Hildreth(image,sigma,n)
+function image__ = Marr_Hildreth(image,sigma,n)
     g = zeros(n);
     image = double(image);
     image_=image;
@@ -141,7 +138,6 @@ function [image__,image_] = Marr_Hildreth(image,sigma,n)
             
         end
     end
-    image_ = im2double(image_);
 end
 
 function v_ = po_ne(v)

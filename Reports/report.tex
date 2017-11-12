@@ -31,7 +31,7 @@
 
 \tableofcontents
 
-\chapter{Histogram Equalization}
+\chapter{Histogram Equalization-P1}
 
 \section{OverView}
 (a) Write a computer program for computing the histogram of an image.
@@ -104,7 +104,7 @@ The original images and enhanced images and histogram comparation are listed as 
 
 
 
-\chapter{Combining spatial enhancement methods}
+\chapter{Combining spatial enhancement methods-P2}
 \section{OverView}
    Implement the image enhancement task of Section 3.7 (Fig 3.43, page 171). The image to be enhanced is skeleton\_orig.tif. You should implement all steps in Figure 3.43. (You are encouraged to implement all functions by yourself, not to directly use Matlab functions such as imfilter or fspecial.)
 
@@ -195,7 +195,7 @@ Image h:
    \includegraphics[width=0.85\textwidth]{images/2/h.jpg}
    \caption{Laplacian Transform of skeleton\_orig.tif}  
 \end{figure}
-\chapter{Filtering in frequency domain}
+\chapter{Filtering in frequency domain-P3}
 \section{OverView}
 Implement the ideal, Butterworth and Gaussian lowpass and highpass filters and compare the results under different parameters using the image characters\_test\_pattern.tif (this image file can be found at the ftp server ftp://ftp.cs.sjtu.edu.cn:990/lu-ht/DIP/images) as the test pattern.
 
@@ -322,7 +322,7 @@ $D(u,v)$ is defined in $(3.7)$
 
 
 
-\chapter{Noise and different noise reduction methods}
+\chapter{Noise and different noise reduction methods-P4}
 \section{OverView}
 In this problem, you are required to write a program to generate different types of random noise (Uniform, Gaussian, Rayleigh, Gamma, Exponential and Impulse, first started from the uniform noise and then use some functions to convert the uniform noise to Gaussian, Rayleigh, Gamma and Exponential; Impulse noise is generated in a different way, consulting the textbook and some other references) and then add these noises to the test patter image Fig0503(original\_pattern).tif to compare the visual results of the noisy images.
 
@@ -540,7 +540,7 @@ P_a, &for\ z=a \cr P_b, &for\ z = b\cr 0,&otherwise\end{cases}
 
 
 
-\chapter{Geometric transform}
+\chapter{Geometric transform-P6}
 \section{OverView}
 Develop a geometric transform program that will rotate, translate, and scale an image by specified amounts, using the nearest neighbor and bilinear interpolation methods, respectively.
 
@@ -725,7 +725,7 @@ We use the four nearest neighbors to estimate the intensity at a given location.
 
 \newpage
 
-\chapter{Geometric transform}
+\chapter{Geometric transform-P8}
 \section{OverView}
 
 Implement the “Opening by reconstruction”, “Filling holes” and “Border clearing” operations on pages 681-683 (pp.659-661 for the electronic textbook), and reproduce the results in Figure 9.29, Figures 9.31, and Figure 9.32.
@@ -921,18 +921,98 @@ g_y = \frac{\partial f}{\partial y} = (z_3+2z_6+z_9)-(z_1+2z_4+z_7)
 \end{align}
 \item Find the zero crossings of the image from last step
   \begin{itemize}
-    \item k
-    
+    \item One approach for finding the zero crossings at any pixel, $p$, of the filtered image, $g(x, y)$, is based on using a 3 * 3 neighborhood centered at p. A zero crossing at $p$ implies that the $signs$ of at least two of its opposing neighboring pixels must differ.There are four cases to test: left/right, up/down, and the two diagonals. If the values of $g(x, y)$ are being compared against a threshold (a common approach), then not only must the signs of opposing neighbors be different, but the absolute value of their numerical difference must also exceed the threshold before we can call $p$ a zero-crossing pixel.
   \end{itemize}
 \end{itemize}
-
+\newpage
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/9/marr.jpg}
+   \caption{Marr-Hildreth result of Figure8.1}
+\end{figure}
 \subsection{Canny}
-
+Let $f(x, y)$ denote the input image and $G(x, y)$ denote the Gaussian function:
+\begin{align}
+G(x,y) = e^{-\frac{x^2+y^2}{2\sigma ^2}}
+\end{align}
+We form a smoothed image, $f_s (x, y)$, by convolving $G$ and $f$:
+\begin{align}
+  f_s(x,y)=G(x,y)\bigstar f(x,y)
+\end{align}
+This operation is followed by computing the gradient magnitude and direction (angle)
+\begin{align}
+M(x,y) = \sqrt{g_x^2+g_y^2}\\
+\alpha (x,y)=tan^{-1}[\frac{g_y}{g_x}]
+\end{align}
+with $g_x = \frac{\partial f_s}{ \partial x}$ and $g_y = \frac{\partial f_s}{ \partial y}$.
+\begin{itemize}
+  \item Find the direction $d_k$ that is closest to $a(x, y)$
+  \item If the value of $M(x, y)$ is less than at least one of its two neighbors along $d_k$ , let $g_N (x, y) = 0 (suppression)$; otherwise, let $g_N (x, y) = M(x, y)$.
+  \item Use double thresholding and connectivity analysis to detect and link edges.
+\end{itemize}
+\newpage
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/9/canny.jpg}
+   \caption{Canny result of Figure8.1}
+\end{figure}
 \section{Thresholding Segmentation}
+
 \subsection{Global Thresholding}
+the segmented image, $g(x, y)$, is given by
+\begin{eqnarray}g(x,y)=
+\begin{cases}
+1, &if\ f(x, y)>T \cr 0,&if\ f(x,y)\le T\end{cases}
+\end{eqnarray}
+\begin{itemize}
+  \item Select an initial estimate for the global threshold, $T$.
+  \item Segment the image using $T$ in Eq. (8.12).This will produce two groups of pixels: $G_1$ consisting of all pixels with intensity values $>T$, and $G_2$ consisting of pixels with values $\le T$.
+  \item Compute the average (mean) intensity values $m_1$ and $m_2$ for the pixels in $G_1$ and $G_2$ , respectively.
+  \item Compute a new threshold value: $T=\frac{m_1+m_2}{2}$
+  \item Repeat Steps 2 through 4 until the difference between values of $T$ in successive iterations is smaller than a predefined parameter $\vartriangle T$
+\end{itemize}
+\newpage
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.8\textwidth]{images/9/image2.jpg}
+   \caption{Test Image}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.8\textwidth]{images/9/basic.jpg}
+   \caption{Global Thresholding of Figure 8.13}
+\end{figure}
 \subsection{Otsu}
-
-
+the probability, $P_1 (k)$, that a pixel is assigned to (i.e., thresholded into) class $C_1$ is given by the cumulative sum
+\begin{align}
+P_1(k)=\sum_{i=0}^{k}p_i
+\end{align}
+The cumulative mean (average intensity) up to level $k$ is given by
+\begin{align}
+m(k)=\sum_{i=0}^{k}ip_i
+\end{align}
+the average intensity of the entire image (i.e., the $global$ mean) is given by
+\begin{align}
+m_G=\sum_{i=0}^{L-1}ip_i
+\end{align}
+we have the final results:
+\begin{align}
+\sigma _B ^2(k)=\frac{[m_GP_1(k)-m(k)]^2}{P_1(k)[1-P_1(k)]}
+\end{align}
+Otsu’s algorithm may be summarized as follows:
+\begin{itemize}
+  \item Compute the normalized histogram of the input image. Denote the components of the histogram by $p_i , i = 0, 1, 2,\cdots , L - 1$.
+  \item Compute the cumulative sums, $P_1 (k)$, for $k = 0, 1, 2,\cdots, L - 1$, using Eq. (8.13).
+  \item Compute the cumulative means, $m(k)$, for $k = 0, 1, 2, \cdots, L - 1$, using Eq. (8.14).
+  \item Compute the global intensity mean, $m_G$ , using (8.15).
+  \item Compute the between-class variance, $\sigma _B^2(k)$, for $k = 0, 1, 2, \cdots , L - 1$, using Eq. (8.16).
+  \item Obtain the Otsu threshold, $k^*$, as the value of $k$ for which $\sigma _B^2(k)$ is maxi-mum. If the maximum is not unique, obtain $k^*$ by averaging the values of $k$ corresponding to the various maxima detected.
+\end{itemize}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/9/otsu.jpg}
+   \caption{Otsu of Figure 8.13}
+\end{figure}
 
 
 %%%%%%
