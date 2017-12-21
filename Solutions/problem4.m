@@ -3,11 +3,14 @@
     by Fanyong Xue
 	Student ID:515030910443
     Generating different types of noise and comparing different noise reduction methods
+
+    Note: I generate too many images in this probelm, so it could it some
+    time
 %}
 
 %% Main Part
 clear all
-image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0503.tif');
+image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Fig0503(original_pattern).tif');
 plot_data_noises(image);
 
 circuit = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/Circuit.tif');

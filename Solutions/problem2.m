@@ -1,131 +1,132 @@
+% image append and bugs to be solve
+% Problem 2
+% by Fanyong Xue
+% Student ID:515030910443
+% Combining spatial enhancement methods
+
+%% Main Part
+clear all
 image = imread('/Users/xuefanyong/Documents/GitHub/DIP/Solutions/images/skeleton_orig.tif');
 [row,col] = size(image);
-c_image = image;
-d_image = image;
-e_image = image;
-f_image = image;
-g_image = image;
-h_image = image;
-double_image = double(image);
-lap_image = zeros(row,col);
 mask = [-1 -1 -1;-1 8 -1;-1 -1 -1];
+mask = double(mask);
+b_image = laplace_transformations(image,mask);
+figure();
+imshow(b_image,[])
+title('b');
+c_image = b_image+im2double(image);
+figure();
+imshow(c_image,[])
+title('c');
+d_image = sobel_gradient(image);
+figure();
+imshow(d_image)
+title('d');
+e_image = smooth(d_image);
+figure();
+imshow(e_image)
+title('e');
+f_image = im2double(e_image).*c_image;
+figure();
+imshow(f_image,[])
+title('f');
+g_image = abs(f_image)+im2double(image);
+figure();
+imshow(g_image,[])
+title('g');
+h_image = sqrt(g_image);
+figure();
+imshow(h_image,[])
+title('h');
+plot_data(image,b_image,c_image,d_image,e_image,f_image,g_image,h_image);
 
-%append_image = [zeros(row,1) double_image zeros(row,1)];
-%append_image = [zeros(1,col+2); append_image ;zeros(1,col+2)];
+%% Function Part
 
-%d
-x_mask = [-1 -2 -1;0 0 0;1 2 1];
-y_mask = [-1 0 1;-2 0 2;-1 0 1];
+% Laplace Transfromation for image using mask
+% Input:
+%   image:image you want to perform
+%   mask:Laplace mask you want to use
+% Output:
+%   image_l:image after laplace transformation
 
-
-for r = 2:row-1
-    for c = 2:col-1
-        lap_image(r,c) = image(r,c)+sum(sum(double_image(r-1:r+1,c-1:c+1).*mask));
-        c_image(r,c) = image(r,c) - lap_image(r,c);
-        d_image(r,c) = abs(sum(sum(double_image(r-1:r+1,c-1:c+1).*x_mask)))+abs(sum(sum(double_image(r-1:r+1,c-1:c+1).*y_mask)));
-    end
-end
-
-
-
-min = lap_image(1,1);
-max = lap_image(1,1);
-
-for r = 1:row
-    for c = 1:col
-        if min > lap_image(r,c)
-            min = lap_image(r,c);
+function image_l = laplace_transformations(image,mask)
+    [row,col] = size(image);
+    mask = double(mask);
+    %append image
+    image_l = im2double(image);
+    image = [zeros(row,2) image zeros(row,2)];
+    image = [zeros(2,col+4);image;zeros(2,col+4)];
+    image_append = im2double(image);
+    
+    for r = 1:row
+        for c = 1:col
+            image_l(r,c) = sum(sum(image_append(r:r+2,c:c+2).*mask));
         end
-        if max < lap_image(r,c)
-            max = lap_image(r,c);
-        end
     end
 end
-
-max = max - min;
-lap_image = lap_image - min;
-lap_image = (lap_image/max);
-lap_image = lap_image+0.8;
-
-%d_image
-
-for r = 3:row-2
-    for c = 3:col-2
-        e_image(r,c) = mean(mean(d_image(r-2:r+2,c-2:c+2)));
-    end
-end
-
-%f_image g_image h_image
-
-
-f_image = e_image.*c_image;
-g_image = f_image+image;
-h_image = sqrt(double(g_image));
-
-
-figure(1);
-subplot(241);
-imshow(double(zeros(row,col))+0.8);
-subplot(242);
-imshow(lap_image);
-
-subplot(245);
-imshow(c_image);
-subplot(246);
-imshow(d_image);
-
-subplot(243);
-imshow(e_image);
-
-subplot(244);
-imshow(f_image);
-
-subplot(247);
-imshow(g_image);
-
-subplot(248);
-imshow(h_image);
-
-
-
-
-
 %{
-function image_f = fourier_transform(image,rows,cols)
-    [row,col]=size(image);
-    
-    image = [image zeros(row,cols-col)];
-    image = [image;zeros(rows-row,cols)];
-    
-    image_f = double(zeros(rows,cols));
-    base_x_matrix = zeros(rows,1);
-    base_y_matrix = zeros(cols,1);
-    
-    
-    for x = 1:rows
-        base_x_matrix(x) = exp(1i*2*pi*(x-1)/rows);
-    end
-    
-    for y = 1:cols
-        base_y_matrix(y) = exp(1i*2*pi*(y-1)/cols);
-    end
-    
-    
-    image_f(1,1) = sum(sum(image));
-    
-    x_sum = sum(double(image'));
-    y_sum = sum(double(image));
-    
-    for r = 2:rows
-        x_sum = x_sum .* base_x_matrix';
-        image_f(r,1) = sum(x_sum);
-    end
-        
-    for c = 2:cols
-        y_sum = y_sum .* base_y_matrix';
-        image_f(1,c) = sum(y_sum);
-    end
-    image_f(1,56)
-    image_f(56,1)
-    end
+    sobel gradient for image
 %}
+function image_s = sobel_gradient(image)
+    [row,col] = size(image);
+    x_mask = [-1 -2 -1;0 0 0;1 2 1];
+    y_mask = [-1 0 1;-2 0 2;-1 0 1];
+    image_s = image;
+    image = double(image);
+    
+    for r = 2:row-1
+        for c = 2:col-1
+            image_s(r,c) = abs(sum(sum(image(r-1:r+1,c-1:c+1).*x_mask)))+abs(sum(sum(image(r-1:r+1,c-1:c+1).*y_mask)));
+        end
+    end
+end
+%{
+    smooth image using 5*5 mean filter
+%}
+function image_s = smooth(image)
+    [row,col] = size(image);
+    image_s = image;
+    for r = 3:row-2
+        for c = 3:col-2
+            image_s(r,c) = mean(mean(image(r-2:r+2,c-2:c+2)));
+        end
+    end
+end
+%{
+    plot data
+%}
+function plot_data(a,b,c,d,e,f,g,h)
+    figure();
+    
+    subplot(241);
+    imshow(a);
+    title('(a) Oringinal Image');
+    
+    subplot(242);
+    imshow(b,[]);
+    title('(b) Laplacian of (a)');
+    
+    subplot(245);
+    imshow(c,[]);
+    title('(c) Sharpened image');
+    
+    subplot(246);
+    imshow(d);
+    title('(d) Sobel gradient');
+    
+    subplot(243);
+    imshow(e);
+    title('(e) Smoothed sobel image');
+    
+    subplot(244);
+    imshow(f,[]);
+    title('(f) Product of (c) and (e)');
+    
+    subplot(247);
+    imshow(g,[]);
+    title('(g) Sharpened image');
+    
+    subplot(248);
+    imshow(h,[]);
+    title('(h) Final result');
+end

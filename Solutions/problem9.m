@@ -3,6 +3,7 @@
     by Fanyong Xue
 	Student ID:515030910443
     Image segmentation
+    Note: canny may take some because it needs to calculate the connection
 %}
 %% Main Part
 clear all

@@ -1077,7 +1077,7 @@ Otsu’s algorithm may be summarized as follows:
 %%%%%%
 \begin{appendices}
 \chapter{Codes}
-\section{Problem1}
+\section{Problem 1}
 
 \begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
 % Problem 1
@@ -1576,105 +1576,6 @@ function image_t=transfer(image,fliter)
     image_t = image_t(1:row,1:col);
     image_t = abs(image_t);
 end
-%{
-
-function [ mfft2 ] = JCGuoFFT2( data )
-    h = size(data, 1);
-    w = size(data, 2);
-    mfft2 = data;
-
-    if power(2, log2(h)) ~= h || power(2, log2(w)) ~= w
-        disp('JCGuoFFT2 exit: h and w must be the power of 2!')
-    else
-        for i = 1 : h
-            mfft2(i, :) = IterativeFFT(mfft2(i, :));
-        end
-
-        for j = 1 : w
-            mfft2(:, j) = IterativeFFT(mfft2(:, j));
-        end
-    end
-end
-
-function image_s = shift_image(image)
-
-    [row,col]=size(image);
-    image_s = image;
-    
-    for r = 1:row
-        for c = 1:col
-            image_s(r,c) = image(r,c)*(-1)^(r+c);
-        end
-    end
-end
-
-
-function image_f = DFT(image,rows,cols)
-    [row,col]=size(image);
-    
-    %pad image to rows*cols
-    image = [image zeros(row,cols-col)];
-    image = [image;zeros(rows-row,cols)];
-    image = double(image);
-    for i = 1:rows
-        k = cols/2;
-        M = round(log2(cols));
-        for j = 1:cols-2
-            if j<k
-                t = image(i,k);
-                image(i,k) = image(i,j);
-                image(i,j) = t;
-            end
-            l = cols/2;
-            while l<=k
-                k = k-1;
-                l = l/2;
-            end
-            k = k+1;
-        end
-        for m = 1:M
-            la = 2^m;
-            lb = la/2;
-            for l = 1:lb
-                r = (l-1)*2^(M-m);
-                n = l-1;
-                while n<rows-1
-                    lc = n+lb;
-                    t = image(lc,j)*exp(2*pi*r/rows);
-                    image(i,lc) = image(i,n) - t;
-                    image(i,n) = image(i,n) + t;
-                    n = n+la;
-                end
-            end
-        end
-    end
-    image_f = image;
-end
-function image_f=DFT(image,rows,cols)
-
-end
-
-function v = DFT_1(V)
-    n = length(V);
-    fft_m = BitReverseCopy(V);
-    
-    for r = 1:log2(n)
-        m = power(2,r);
-        wm = exp(- 2 * pi * i / m);
-        
-        for k = 0 : m : n - 1
-            w = 1;
-            for j = 0 : m / 2 - 1
-                t = w * fft_m(k + j + m / 2 + 1);
-                u = fft_m(k + j + 1);
-                fft_m(k + j + 1) = u + t;
-                fft_m(k + j + m / 2 + 1) = u - t;
-                w = w * wm;
-            end
-        end
-    end
-end
-%}
 \end{lstlisting}
 
 
@@ -2087,7 +1988,7 @@ function histogram = get_histogram(image)
 end
 \end{lstlisting}
 
-\section{Problem5}
+\section{Problem 5}
 
 \begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
 %{
@@ -2603,7 +2504,7 @@ function image_ = border_clearing(image)
 end
 \end{lstlisting}
 
-\section{Problem9}
+\section{Problem 9}
 
 \begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
 %{

@@ -121,12 +121,12 @@
 \contentsline {subsection}{\numberline {8.3.2}Otsu}{63}{subsection.8.3.2}
 \gdef \@chapapp {\appendixname }
 \contentsline {chapter}{\numberline {A}Codes}{65}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Problem1}{65}{section.a.A.1}
+\contentsline {section}{\numberline {A.1}Problem 1}{65}{section.a.A.1}
 \contentsline {section}{\numberline {A.2}Problem 2}{66}{section.a.A.2}
 \contentsline {section}{\numberline {A.3}Problem 3}{69}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Problem 4}{76}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Problem5}{84}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Problem 6}{87}{section.a.A.6}
-\contentsline {section}{\numberline {A.7}Problem 8}{91}{section.a.A.7}
-\contentsline {section}{\numberline {A.8}Problem9}{94}{section.a.A.8}
+\contentsline {section}{\numberline {A.4}Problem 4}{74}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Problem 5}{82}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Problem 6}{85}{section.a.A.6}
+\contentsline {section}{\numberline {A.7}Problem 8}{89}{section.a.A.7}
+\contentsline {section}{\numberline {A.8}Problem 9}{92}{section.a.A.8}
 \contentsfinish 
