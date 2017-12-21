@@ -530,16 +530,75 @@ P_a, &for\ z=a \cr P_b, &for\ z = b\cr 0,&otherwise\end{cases}
    \caption{Original Book FIGURE 5.12}
 \end{figure}
 \newpage
-\chapter{Image restoration}
+\chapter{Image Restoration-P5}
 \section{OverView}
+Suppose a blurring degradation function as
+\begin{align}
+H(u,v) = \frac{T}{\pi(ua+vb)}sin(\pi(ua+vb))e^{-j\pi(ua+vb)}
+\end{align}
+\begin{enumerate}
+	\item Implement a blurring filter using Eq. (5.1).
+	\item Blur the test image book\_cover.jpg using parameters $a=b=0.1$ and $T = 1$.
+	\item Add Gaussian noise of 0 mean and variance of 650 to the blurred image.
+	\item Restore the blurred image and the blurred noisy image using the inverse filter, Wiener filter, respectively.
+	\item Add Gaussian noise of 0 and different variances to the blurred image and repeat 4, investigate the performance of the Wiener filter.
+\end{enumerate}
+\section{Fliter}
+\subsection{Motion Filter}
+Assume that we know $x_0(t)$, $y_0(t)$, and the image is moving in x-axis and y-axis moving according to the $x_0(t)=\frac{at}{T}$, $y_0(t)=\frac{bt}{T}$. Then we know:
+\begin{align}
+H(u,v) = \frac{T}{\pi(ua+vb)}sin(\pi(ua+vb))e^{-j\pi(ua+vb)}
+\end{align}
+\subsection{Inverse Filter}
+\begin{align}
+\hat{F}(u,v)=\frac{G(u,v)}{H(u,v)}
+\end{align}
+With noise:
+\begin{align}
+\hat{F}(u,v)=F(u,v)+\frac{N(u,v)}{H(u,v)}
+\end{align}
+\subsection{Wiener Filter}
+\begin{align}
+\hat{F}(u,v)=[\frac{1}{H(u,v)}\frac{|H(u,v)|^2}{|H(u,v)|^2+K}]G(u,v)
+\end{align}
+\section{Results}
 
 
-\section{This is a section}
-\subsection{This is a subsection}
-\subsection{This is a subsection}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/5/image1.jpg}
+   \caption{Blurred and Noise Image}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.5\textwidth]{images/5/in.jpg}
+   \caption{Restoration Image using Inverse Filter}
+\end{figure}
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.5\textwidth]{images/5/650_.jpg}
+   \caption{Blurred Image with Noise(variance of 650)}
+\end{figure}
 
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/5/650.jpg}
+   \caption{Restoration Image with Noise(variance of 650)}
+\end{figure}
 
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=0.5\textwidth]{images/5/324_.jpg}
+   \caption{Blurred Image with Noise(variance of 324)}
+\end{figure}
 
+\begin{figure}[!htb]
+   \centering  
+   \includegraphics[width=1\textwidth]{images/5/324.jpg}
+   \caption{Restoration Image with Noise(variance of 324)}
+\end{figure}
+
+We can easily find that the performance of wiener filter is much better than inverse filter, and less the variance of the noise is, better the performance of the winner is.
 \chapter{Geometric transform-P6}
 \section{OverView}
 Develop a geometric transform program that will rotate, translate, and scale an image by specified amounts, using the nearest neighbor and bilinear interpolation methods, respectively.
@@ -2028,6 +2087,153 @@ function histogram = get_histogram(image)
 end
 \end{lstlisting}
 
+\section{Problem5}
+
+\begin{lstlisting}[numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},commentstyle=\color{red!50!green!50!blue!50},frame=shadowbox, rulesepcolor=\color{red!20!green!20!blue!20}] 
+%{
+    Problem 5
+    by Fanyong Xue
+	Student ID:515030910443
+    Image restoration
+%}
+%% Main Part
+
+clear all
+image = imread('Image Path/book_cover.jpg');
+image = im2double(image);
+
+% motion blur
+[row,col] = size(image);
+image_f = fft2(image,row,col);
+image_f2 = fftshift(image_f);
+fliter = blurring_degradation(row,col,0.1,0.1,1);
+image_t = image_f2.*fliter;
+G = image_t;
+image_t = ifftshift(image_t);
+image_t = ifft2(image_t);
+image_t = abs(image_t);
+image_t = im2uint8(image_t);
+
+% add noise
+noise=gaussian_noise(row,col,0,25);
+noise=int16(noise);
+image_n = noise+int16(image_t);
+image_n = uint8(image_n);
+noise=uint8(noise);
+
+% diaplsy
+figure();
+subplot(221);
+imshow(image);
+title('Original Image');
+subplot(222);
+imshow(image_t);
+title('Blurred Image');
+subplot(223);
+imshow(noise);
+title('Noise');
+subplot(224);
+imshow(image_n);
+title('Blurred Image with Noise');
+
+% restoration
+% no noise
+image_i = inverse_filter(G,fliter);
+figure();
+imshow(image_i);
+title('Inverse Filter');
+
+% with noise 650
+N = fft2(im2double(noise));
+N = fftshift(N);
+G_ = G+N;
+image_i2 = inverse_filter(G_,fliter);
+image_w = wiener_filter(G_,fliter,0.03);
+% display
+figure();
+subplot(121);
+imshow(image_i2,[]);
+title('Inverse Filter(650)');
+subplot(122);
+imshow(image_w);
+title('Wiener Filter(650)');
+
+%with noise 324
+noise=gaussian_noise(row,col,0,18);
+noise=uint8(noise);
+N = fft2(im2double(noise));
+N = fftshift(N);
+G_ = G+N;
+
+image_i2 = inverse_filter(G_,fliter);
+image_w = wiener_filter(G_,fliter,0.01);
+
+% display
+figure();
+subplot(121);
+imshow(image_i2,[]);
+title('Inverse Filter(324)');
+subplot(122);
+imshow(image_w);
+title('Wiener Filter(324)');
+% 
+%% Function Part
+% blurring degradation
+function h = blurring_degradation(row,col,a,b,T)
+    
+    h = double(zeros(row,col));
+    for u  = 1:row
+        for v = 1:col
+            if u +v == col
+                h(u,v)=1;
+                continue;
+            end
+            h(u,v) = T/(pi*((u-row/2)*a+(v-col/2)*b))*
+            sin(pi*((u-row/2)*a+(v-col/2)*b))*
+            exp(-1i*pi*((u-row/2)*a+(v-col/2)*b));
+        end
+    end
+end
+
+% gaussian noise
+function n = gaussian_noise(row,col,ex,sigma)
+    n_ = rand([row col]);
+    n = n_;
+    for r = 1:row
+        if mod(col,2)==0
+            for c = 1:2:col
+                n(r,c) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,c+1));
+                n(r,c+1) = sqrt(-2*log(n_(r,c)))*sin(2*pi*n_(r,c+1));
+            end
+        else
+            for c = 1:2:col-1
+                n(r,c) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,c+1));
+                n(r,c+1) = sqrt(-2*log(n_(r,c)))*sin(2*pi*n_(r,c+1));
+            end
+            n(r,col) = sqrt(-2*log(n_(r,c)))*cos(2*pi*n_(r,1));
+        end
+    end
+    n = n*double(sigma);
+    n = n+ex;
+end
+% inverse filter
+function image_ = inverse_filter(g,h)
+    image_ = g./h;
+    image_ = ifftshift(image_);
+    image_ = ifft2(image_);
+    image_ = abs(image_);
+end
+% wiener filter
+function image_ = wiener_filter(g,h,k)
+    image_ = ((conj(h).*h)./((conj(h).*h)+k)).*g./h;
+    image_ = ifftshift(image_);
+    image_ = ifft2(image_);
+    image_ = abs(image_);
+end
+
+\end{lstlisting}
+
+
 
 \section{Problem 6}
 
@@ -2804,8 +3010,6 @@ function histogram = get_histogram(image)
 end
 
 \end{lstlisting}
-
-
 
 \end{appendices}
 
